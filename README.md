@@ -9,4 +9,5 @@
 
 - La siguiente incorporación deseada es dinamismo en las preguntas, es decir, que desde la Biblioteca puedan agregar, eliminar o editar preguntas. También podrían añadirse estadísticas, manipulación de parámetros de puntaje e incluso replantear la estética del sitio.
 
-- Autor: Santiago Civalero
+- Autor: Santiago Civalero.
+- Sucesores: Santillan, Felipe; Cenicero, Joaquin. 
