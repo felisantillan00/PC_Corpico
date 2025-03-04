@@ -1,0 +1,161 @@
+.answersContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #121212;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  text-align: center;
+}
+
+.resultsLink {
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #3E64AC;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.resultsLink:hover {
+  background-color: #FFDA1F;
+  color: #3E64AC;
+}
+
+.info {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.selectedOption {
+  color: #3E64AC;
+}
+
+.incorrectOption {
+  color: red;
+}
+
+.questionContainer {
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: radial-gradient(circle, #ffffff 0%, #F2F2F2 40%, #E7E7E7 100%);
+}
+
+.questionTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: -5px;
+  text-align: center;
+}
+
+.optionsList {
+  padding: 0;
+  text-align: center;
+}
+
+.optionItem {
+  margin: 10px 0;
+  font-size: 16px;
+  position: relative;
+  text-align: left;
+}
+
+.optionImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+.correctText {
+  color: green;
+  margin-left: 5px;
+}
+
+.cross {
+  color: red;
+  margin-left: 5px;
+}
+
+.points {
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.explanation {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: left;
+  font-style: italic;
+}
+
+@media (max-width: 1200px) {
+  .answersContainer {
+    max-width: 800px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .answersContainer {
+    max-width: 600px;
+    padding: 10px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .resultsLink {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  .questionTitle {
+    font-size: 18px;
+  }
+  .points, .info {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .answersContainer {
+    max-width: 100%;
+    padding: 5px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .resultsLink {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .questionContainer {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .questionTitle {
+    font-size: 16px;
+  }
+  .points, .info {
+    font-size: 12px;
+  }
+  .optionImage {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,0 +1,182 @@
+.levelSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.topBar {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #3E64AC 14.28%, #712D85 14.28%, #712D85 28.56%, #E22B14 28.56%, #E22B14 42.84%, #EA672E 42.84%, #EA672E 57.12%, #FFDA1F 57.12%, #FFDA1F 71.4%, #35AC75 71.4%, #35AC75 85.68%, #5FC3E6 85.68%);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.title {
+  font-size: 24px;
+  color: #121212;
+  margin-top: -60px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #3E64AC;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #121212;
+  margin-bottom: 20px;
+}
+
+.levelButton {
+  width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  background-color: #3E64AC;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.levelButton:hover {
+  background-color: #FFDA1F;
+  color: #3E64AC;
+}
+
+.instructionsButton {
+  width: 150px;
+  padding: 8px;
+  margin: 10px 0;
+  border: 2px solid #8D579D;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #8D579D;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.instructionsButton:hover, .instructionsButton.active {
+  color: #FFFFFF;
+  background-color: #8D579D;
+  border-color: #8D579D;
+}
+
+.instructions {
+  margin-top: 20px;
+  color: #121212;
+  font-size: 15px;
+  text-align: left;
+  font-weight: bolder;
+}
+
+.instructions p {
+  margin: 8px 0;
+  margin-bottom: 18px;
+}
+
+.step1 {
+  color: #3E64AC;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.step2 {
+  color: #712D85;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.step3 {
+  color: #E22B14;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.step4 {
+  color: #EA672E;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.step5 {
+  color: #FFDA1F;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.step6 {
+  color: #35AC75;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media (max-width: 1200px) {
+  .levelSelector {
+    padding: 20px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .levelButton, .instructionsButton {
+    width: 180px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .levelSelector {
+    padding: 15px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .levelButton, .instructionsButton {
+    width: 160px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .levelSelector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .levelButton,
+  .instructionsButton {
+    width: 160px;
+    font-size: 12px;
+  }
+
+  .instructions {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+
