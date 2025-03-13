@@ -1,0 +1,28 @@
+.ping{
+    padding: 0.4rem 1rem;
+    border-radius: 1.5rem;
+    font-size: 25px;
+    margin-right: 2rem;
+    font-weight: bold;
+    color: black;
+}
+.boton{
+    padding: 0.2rem 1rem;
+    border-radius: 5rem;
+    margin-left: 2rem;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+}
+.box-nickname{
+    display: flex;
+    align-items: center;
+    margin-top: 7rem;
+}
+
+.box-niveles{
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

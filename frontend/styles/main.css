@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('../resources/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+.logo{
+    width: 60%;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 2px 20px rgb(0, 0, 0, 0.3));
+}
+.container{
+    background-color: #ffffff;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 30px rgb(0, 0, 0, 0.3);
+}
+.color-prin{
+    background-color: #71D374;
+    border: 0.3rem solid #1B682D;
+}
+
+.btn-jugar{
+    /* width: 12rem;
+    height: 3.6rem; */
+    padding: 0.5rem 3rem;
+    margin-top: 7rem;
+    border-radius: 1.5rem;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-jugar:hover{
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+    transform: scale(1.07);
+}
