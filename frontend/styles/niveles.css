@@ -1,10 +1,15 @@
 .ping{
+    width: 60%;
     padding: 0.4rem 1rem;
     border-radius: 1.5rem;
     font-size: 25px;
     margin-right: 2rem;
     font-weight: bold;
     color: black;
+    outline: none;
+}
+input::placeholder{
+    color: #111;
 }
 .boton{
     padding: 0.2rem 1rem;
@@ -14,15 +19,21 @@
     font-weight: bold;
     font-family: monospace;
 }
+.btn-level{
+    width: 220px;
+}
 .box-nickname{
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-top: 7rem;
 }
 
 .box-niveles{
-    /* background-color: aqua; */
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
+    margin-top: 1.3rem;
 }
