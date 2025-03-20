@@ -78,8 +78,22 @@ h2{
 }
 
 .correcto{
-    background: #9aeabc;
+    font-size: 25px;
+    font-weight: bold;
+    background: #71D374;
 }
 .incorrecto{
-    background: #ff9393;
+    font-size: 25px;
+    font-weight: bold;
+    background: #C0371F;
 }
+.desactivado {
+    background-color: #d3d3d3; /* Color gris */
+    color: #777; /* Color del texto */
+    cursor: not-allowed; /* Indicar que está desactivado */
+}
+.seleccionado {
+    color: black; /* Mantener el texto claro y visible */
+    font-weight: bold; /* Opcional: resaltar el texto */
+}
+
