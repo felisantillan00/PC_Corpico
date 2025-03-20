@@ -43,6 +43,7 @@ input::placeholder{
     gap: 1rem; 
     justify-items: center; 
     align-items: center; 
+    
 
 }
 .box-niveles{
@@ -52,6 +53,7 @@ input::placeholder{
     align-items: center;
     gap: 2rem;
     margin-top: 1.3rem;
+    text-align: center;
 }
 h2{
     font-size: 30px;
@@ -62,14 +64,13 @@ h2{
 #btn-sig{
     background-color: #71D374;
     border: 0.3rem solid #1B682D;
-    margin-top: 6rem;
     padding: 0.5rem 3rem;
     border-radius: 1.5rem;
     font-size: 25px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    display: none;
+    visibility: hidden; 
 }
 #btn-sig:hover{
     box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
