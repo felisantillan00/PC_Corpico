@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../styles/easyLevel.css">
-	<link rel="icon" type="image/png" href="../resources/corpico.png">
-	<script src="../js/roulette.js" defer></script>
-	<script src="../js/helpers.js"></script>
-	
-	<title>Nivel Primario</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Tr-Android | Ruleta</title>
+	<link rel="stylesheet" href="../styles/easyLevel.css" />
 </head>
+
 <body>
-	<!-- Título -->
-	<h1>Dificultad Facil!</h1>
-	<h5>Dificultad Facil!</h5>
-	<div id="container">
-
-		<!-- Marcador -->
-		<div id="marcador">
-			<div id="cartelGanador">
-				<p id="ganadorTexto">¡Click en "Girar" para iniciar!</p>
-			</div>
-		</div>
-
-		<!-- Ruleta -->
-		<div id="ruleta">
-			<!-- <img src="./img/transportador.png" alt=""> -->
-			<div id="sortear"><p>GIRAR</p></div>
-		</div>
-	</div>
-	<!-- <button id="settings">SETTINGS</button> -->
-
-	<!-- Modal -->
-	<dialog>
-		<div id="tituloForm">
-			<p>Nombre</p>
-			<p>Probabilidad (%)</p>
-		</div>
-		<div id="formContainer"></div>
-		<button id="agregar">+</button>
-		<p>Total: <span id="porcentaje"></span>%</p>
-		<button id="aceptar">Cambiar</button>
-		<button id="cancelar">Cancelar</button>
-	</dialog>
+    <div id="container">
+        <div class="arrow"></div>
+        <div id="wheel">
+            <div class="segment">
+                <div class="segment-text">Morder un chile</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">1 fondo</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Cantar x 1 Minuto</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Tomar 1 Shoot</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Vaporub en los ojos :v</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Gira 15 veces</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Besa a alguien</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Todos te dan 20 varos</div>
+            </div>
+            <div class="segment">
+                <div class="segment-text">Besa el pie de alguien</div>
+            </div>
+        </div>
+    </div>
+	<button id="spinButton">⬅️Girar</button>
+	<script src="../js/roulette.js"></script>
 </body>
+
 </html>
