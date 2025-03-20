@@ -1,0 +1,84 @@
+.ping{
+    width: 60%;
+    padding: 0.4rem 1rem;
+    border-radius: 1.5rem;
+    font-size: 25px;
+    margin-right: 2rem;
+    font-weight: bold;
+    color: black;
+    outline: none;
+}
+input::placeholder{
+    color: #111;
+}
+.btn-preg{
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 0.5rem 3rem;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.btn-preg:hover:not([disabled]){
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+    transform: scale(1.07);
+}
+.btn:disabled{
+    cursor: no-drop;
+}
+
+.box-nickname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7rem;
+}
+#boxBotones{
+    gap: 1rem; 
+    justify-items: center; 
+    align-items: center; 
+
+}
+.box-niveles{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.3rem;
+}
+h2{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+
+}
+#btn-sig{
+    background-color: #71D374;
+    border: 0.3rem solid #1B682D;
+    margin-top: 6rem;
+    padding: 0.5rem 3rem;
+    border-radius: 1.5rem;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: none;
+}
+#btn-sig:hover{
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+    transform: scale(1.07);
+}
+
+.correcto{
+    background: #9aeabc;
+}
+.incorrecto{
+    background: #ff9393;
+}
