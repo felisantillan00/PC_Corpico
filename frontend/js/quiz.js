@@ -59,7 +59,7 @@ function showPregunta() {
 }
 
 function resetEstado() {
-    siguienteButton.style.display = "none";
+    siguienteButton.style.visibility = "hidden";
     while (respuestaButton.firstChild) {
         respuestaButton.removeChild(respuestaButton.firstChild);
     }
@@ -79,7 +79,7 @@ function seleccionRespuesta(e) {
         }
         button.disabled = true;
     });
-    siguienteButton.style.display = "block";
+     siguienteButton.style.visibility = "visible";
 }
 
 
@@ -87,7 +87,7 @@ function showPuntos() {
     resetEstado();
     preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de ${preguntas.length}!`;
     siguienteButton.innerHTML = "Volver a la ruleta";
-    siguienteButton.style.display = "block";
+   siguienteButton.style.visibility = "visible";
 }
 
 
