@@ -7,25 +7,31 @@ body {
 	align-items: center;
 	overflow: hidden;
 	background: radial-gradient(circle,
-			rgba(97, 172, 203, 1) 25%,
-			rgba(9, 72, 255, 1) 70%);
+	rgba(97, 172, 203, 1) 25%,
+	rgba(9, 72, 255, 1) 70%);
+}
+
+#container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #wheel {
-	width: 800px;
-	height: 800px;
+	width: 500px;
+	height: 500px;
 	border-radius: 50%;
-	border: 15px solid #000;
+	border: 10px solid #000;
 	position: relative;
 	overflow: hidden;
-	transition: 5s;
 }
 
 .arrow {
 	position: absolute;
-	top: 50px;
+	top: 5px;
 	left: 50%;
-	transform: translateX(-100%);
+	transform: translateX(-50%) rotate(180deg);
 	width: 0;
 	height: 0;
 	rotate: 180;
@@ -36,87 +42,85 @@ body {
 }
 
 .segment {
-	height: 50px;
-	width: 400px;
-	position: absolute;
-	clip-path: polygon(100% 0, 50% 100%, 0 0);
-	transform: translate(-50%);
-	transform-origin: bottom;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 20px;
-	font-weight: bold;
-	font-family: sans-serif;
-	color: #fff;
-	margin-top: -19%;
-	margin-left: 25%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    clip-path: polygon(100% 0, 50% 100%, 0 0);
+    transform-origin: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .segment-text {
 	position: absolute;
-	left: -70px;
-	bottom: -350px;
-	width: 550px;
-	height: 200px;
+	bottom: 150px;
+	width: 0px;
+	height: 0px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	transform: rotate(-90deg);
 	font-size: 20px;
 	font-weight: bold;
-	color: aqua;
+    font-family: sans-serif;
+	color: rgb(255, 255, 255);
 }
 
-/*Calculamos la rotacion para 9 segmentos (40º por segmento)*/
-
 .segment:nth-child(1) {
-	border-bottom: 500px solid red;
-	transform: rotate(0deg);
+    background-color: red;
+    transform: rotate(0deg) translateY(-50%);
 }
 
 .segment:nth-child(2) {
-	border-bottom: 500px solid blue;
-	transform: rotate(40deg);
+    background-color: blue;
+    transform: rotate(45deg) translateY(-50%);
 }
 
 .segment:nth-child(3) {
-	border-bottom: 500px solid green;
-	transform: rotate(80deg);
+    background-color: green;
+    transform: rotate(90deg) translateY(-50%);
 }
 
 .segment:nth-child(4) {
-	border-bottom: 500px solid yellow;
-	transform: rotate(120deg);
+    background-color: yellow;
+    transform: rotate(135deg) translateY(-50%);
 }
 
 .segment:nth-child(5) {
-	border-bottom: 500px solid black;
-	transform: rotate(160deg);
+    background-color: black;
+    transform: rotate(180deg) translateY(-50%);
 }
 
 .segment:nth-child(6) {
-	border-bottom: 500px solid blueviolet;
-	transform: rotate(200deg);
+    background-color: blueviolet;
+    transform: rotate(225deg) translateY(-50%);
 }
 
 .segment:nth-child(7) {
-	border-bottom: 500px solid rosybrown;
-	transform: rotate(240deg);
+    background-color: rosybrown;
+    transform: rotate(270deg) translateY(-50%);
 }
 
 .segment:nth-child(8) {
-	border-bottom: 500px solid tomato;
-	transform: rotate(280deg);
-}
-
-.segment:nth-child(9) {
-	border-bottom: 500px solid white;
-	transform: rotate(320deg);
+    background-color: tomato;
+    transform: rotate(315deg) translateY(-50%);
 }
 
 #spinButton {
-	font-size: 20px;
-	margin-left: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: red;
+    border: none;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
