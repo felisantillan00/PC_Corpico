@@ -67,21 +67,28 @@ function resetEstado() {
 function seleccionRespuesta(e) {
     const btnSeleccionado = e.target;
     const esCorrecto = btnSeleccionado.dataset.correcta === "true";
+
     if (esCorrecto) {
         btnSeleccionado.classList.add("correcto");
         puntos++;
     } else {
         btnSeleccionado.classList.add("incorrecto");
     }
+
     Array.from(respuestaButton.children).forEach(button => {
+        if (button !== btnSeleccionado) {
+            button.classList.add("desactivado"); // Clase para el color gris
+        } else {
+            button.classList.add("seleccionado"); // Clase para mantener las letras claras
+        }
         if (button.dataset.correcta === "true") {
             button.classList.add("correcto");
         }
-        button.disabled = true;
+        button.disabled = true; // Desactivar todos los botones
     });
-     siguienteButton.style.visibility = "visible";
-}
 
+    siguienteButton.style.visibility = "visible";
+}
 
 function showPuntos() {
     resetEstado();
