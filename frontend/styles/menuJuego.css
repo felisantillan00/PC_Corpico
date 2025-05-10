@@ -51,3 +51,19 @@ body {
 .carta.volteada .dorso {
     transform: rotateY(360deg);
 }
+
+.btn-reiniciar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-reiniciar:hover {
+    background-color: #b71c1c;
+}

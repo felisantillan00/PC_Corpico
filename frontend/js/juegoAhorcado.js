@@ -1,14 +1,15 @@
 const palabras = [
     "cooperativa", "solidaridad", "trabajo", "ayuda",
     "autogestion", "igualdad", "participacion", "democracia",
-    "responsabilidad", "educacion", "sostenibilidad"
+    "responsabilidad", "educacion", "sostenibilidad", "transparencia"
 ];
 
 let palabra = "";
 let letrasUsadas = [];
 let errores = 0;
-const maxErrores = 6;
 let palabraActual = 1;
+let puntos = 0;
+const maxErrores = 6;
 const totalPalabras = 5;
 
 const palabraContainer = document.getElementById("word");
@@ -34,9 +35,13 @@ function startGame() {
 
 function startGame() {
     if (palabraActual > totalPalabras) {
-        alert("🎉 ¡Terminaste las 4 palabras!");
-        window.location.href = "menuJuego.html";
-        return;
+        alert(`🎉 ¡Terminaste las ${totalPalabras} palabras!`);
+        preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de las ${totalPalabras} palabras en el minijuego Ahorcado!`;
+        let puntaje = parseInt(localStorage.getItem('puntajeJugador') || 0);
+        localStorage.setItem('puntajeJugador', puntaje + puntos);
+        setTimeout(() => {
+            window.location.href = 'menuJuego.html';
+        }, 3000); // 3 segundos
     }
 
     palabra = palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
@@ -71,6 +76,8 @@ function manejarLetra(letra, btn) {
     if (palabra.includes(letra)) {
         btn.classList.add("correct");
         actualizarPalabra();
+        puntos = + 6;
+
     } else {
         errores++;
         btn.classList.add("wrong");
@@ -82,6 +89,7 @@ function manejarLetra(letra, btn) {
                 alert("😵 ¡Perdiste esta palabra!");
                 avanzarRonda();
             }, 500);
+            puntos = - 3;
         }
     }
 
@@ -122,6 +130,5 @@ function avanzarRonda() {
     palabraActual++;
     startGame();
 }
-
 // Iniciar juego al cargar
 startGame();
