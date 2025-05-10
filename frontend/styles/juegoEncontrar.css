@@ -7,7 +7,7 @@
 
 .wrapper {
     box-sizing: content-box;
-    width: 26.87em;
+    width: 40rem;
     padding: 2.5em 3em;
     background-color: #ffffff;
     position: absolute;
@@ -25,9 +25,29 @@
     gap: 0.6em;
 }
 
+.separador {
+    grid-column: 1 / -1;
+    height: 0.35rem;
+    background-color: black;
+    margin: 0.2rem 0;
+    border-radius: 0.6rem;
+}
+
+.palabra {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
 .stats-container {
     text-align: left;
-    margin-bottom: 1.2em;
+    margin-bottom: .2em;
 }
 
 .stats-container span {
@@ -36,8 +56,8 @@
 
 .card-container {
     position: relative;
-    width: 6.25em;
-    height: 6.25em;
+    width: auto;
+    height: 8em;
     cursor: pointer;
 }
 

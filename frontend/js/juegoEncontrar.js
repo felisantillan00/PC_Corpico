@@ -11,18 +11,14 @@ let primeraCarta = false;
 let seguntaCarta = false;
 
 const items = [
-    { name: "bee", image: "../resources/img/bee.png" },
-    { name: "crocodile", image: "../resources/img/crocodile.png" },
-    { name: "macaw", image: "../resources/img/macaw.png" },
-    { name: "gorilla", image: "../resources/img/gorilla.png" },
-    { name: "tiger", image: "../resources/img/tiger.png" },
-    { name: "monkey", image: "../resources/img/monkey.png" },
-    { name: "chameleon", image: "../resources/img/chameleon.png" },
-    { name: "piranha", image: "../resources/img/piranha.png" },
-    { name: "anaconda", image: "../resources/img/anaconda.png" },
-    { name: "sloth", image: "../resources/img/sloth.png" },
-    { name: "cockatoo", image: "../resources/img/cockatoo.png" },
-    { name: "toucan", image: "../resources/img/toucan.png" },
+    { name: "ayudarse", image: "../resources/img/Ayudarse.jpg" },
+    { name: "democracia", image: "../resources/img/Democracia.jpg" },
+    { name: "equidad", image: "../resources/img/equidad.jpg" },
+    { name: "honestidad", image: "../resources/img/Honestidad.jpeg" },
+    { name: "igualdad", image: "../resources/img/igualdad.jpeg" },
+    { name: "solidaridad", image: "../resources/img/solidaridad.jpg" },
+    { name: "responsabilidad", image: "../resources/img/responsabilidad.jpg" },
+    { name: "preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
     // { name: "", image: "" },
 ];
 
@@ -35,7 +31,7 @@ const timeGenerator = () => {
         minutos += 1;
         segundos = 0;
     }
-    
+
     let valorEnSegundos = segundos < 10 ? `0${segundos}` : segundos;
     let valorEnMinutos = minutos < 10 ? `0${minutos}` : minutos;
     tiempo.innerHTML = `<span>Time:</span>${valorEnMinutos}:${valorEnSegundos}`;
@@ -65,16 +61,36 @@ const generateRandom = (tamaño = 4) => {
 
 const generarMatriz = (valoresDeLasCartas, tamaño = 4) => {
     contenedorJuego.innerHTML = "";
-    valoresDeLasCartas = [...valoresDeLasCartas, ...valoresDeLasCartas];
-    valoresDeLasCartas.sort(() => Math.random() - 0.5);
+
+    let primeraMitad = [];
+    let segundaMitad = [];
+
+    valoresDeLasCartas.forEach((carta) => {
+        primeraMitad.push({ ...carta, tipo: "imagen" });
+        segundaMitad.push({ ...carta, tipo: "texto" });
+    });
+    primeraMitad.sort(() => Math.random() - 0.5);
+    segundaMitad.sort(() => Math.random() - 0.5);
+
+    let valoresDistribuidos = [...primeraMitad, ...segundaMitad];
+
     for (let i = 0; i < tamaño * tamaño; i++) {
+
+        if (i === 8) {
+            contenedorJuego.innerHTML += `
+            <div class="separador"></div>`
+        }
+        const mitad = i < 8 ? "arriba" : "abajo";
         contenedorJuego.innerHTML += `
-     <div class="card-container" data-card-value="${valoresDeLasCartas[i].name}">
-        <div class="card-before">?</div>
-        <div class="card-after">
-        <img src="${valoresDeLasCartas[i].image}" class="image"/></div>
-     </div>
-     `;
+            <div class="card-container" data-card-value="${valoresDistribuidos[i].name}" data-mitad="${mitad}">
+                <div class="card-before">?</div>
+                <div class="card-after">
+                ${valoresDistribuidos[i].tipo === "imagen" 
+                    ? `<img src="${valoresDistribuidos[i].image}" class="image"/>` 
+                    : `<span class="palabra">${valoresDistribuidos[i].name}</span>`}
+                </div>
+            </div>
+            `;
     }
 
     contenedorJuego.style.gridTemplateColumns = `repeat(${tamaño},auto)`;
@@ -83,32 +99,41 @@ const generarMatriz = (valoresDeLasCartas, tamaño = 4) => {
     cartas.forEach((card) => {
         card.addEventListener("click", () => {
             if (!card.classList.contains("matched") && card !== primeraCarta) {
-                card.classList.add("flipped");
+                const mitad = card.getAttribute("data-mitad");
                 if (!primeraCarta) {
                     primeraCarta = card;
                     firstCardValue = card.getAttribute("data-card-value");
+                    mitadPrimera = mitad;
+                    card.classList.add("flipped");
                 } else {
-                    contarMovimientos();
-                    seguntaCarta = card;
-                    let secondCardValue = card.getAttribute("data-card-value");
-                    if (firstCardValue == secondCardValue) {
-                        primeraCarta.classList.add("matched");
-                        seguntaCarta.classList.add("matched");
-                        primeraCarta = false;
-                        victorias += 1;
-                        if (victorias == Math.floor(valoresDeLasCartas.length / 2)) {
-                            resultado.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${cantMovimientos}</h4>`;
-                            detenerJuego();
+                    if (mitad !== mitadPrimera) {
+                        card.classList.add("flipped");
+                        contarMovimientos();
+                        seguntaCarta = card;
+                        let secondCardValue = card.getAttribute("data-card-value");
+                        if (firstCardValue == secondCardValue) {
+                            primeraCarta.classList.add("matched");
+                            seguntaCarta.classList.add("matched");
+
+                            victorias += 1;
+                            if (victorias == Math.floor(valoresDistribuidos.length / 2)) {
+                                resultado.innerHTML = `<h2>You Won</h2>
+                                        <h4>Moves: ${cantMovimientos}</h4>`;
+                                detenerJuego();
+                            }
+                        } else {
+                            let [tempFirst, tempSecond] = [primeraCarta, seguntaCarta];
+
+                            let delay = setTimeout(() => {
+                                tempFirst.classList.remove("flipped");
+                                tempSecond.classList.remove("flipped");
+                            }, 500);
                         }
-                    } else {
-                        let [tempFirst, tempSecond] = [primeraCarta, seguntaCarta];
                         primeraCarta = false;
                         seguntaCarta = false;
-                        let delay = setTimeout(() => {
-                            tempFirst.classList.remove("flipped");
-                            tempSecond.classList.remove("flipped");
-                        }, 500);
+                        mitadPrimera = null;
+                    } else {
+                        console.log("Debes elegir una carta de la otra mitad.");
                     }
                 }
             }
