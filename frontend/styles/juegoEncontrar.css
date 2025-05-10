@@ -18,11 +18,16 @@
     box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
+.wrapper span{
+    font-size: 1.3rem;
+}
+
 .game-container {
     position: relative;
     width: 100%;
     display: grid;
     gap: 0.6em;
+    margin-top: 0.5rem;
 }
 
 .separador {
@@ -34,7 +39,7 @@
 }
 
 .palabra {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
     display: flex;
@@ -46,8 +51,11 @@
 }
 
 .stats-container {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
     text-align: left;
-    margin-bottom: .2em;
+    margin-bottom: .2rem;
 }
 
 .stats-container span {
@@ -110,8 +118,8 @@
 
 button {
     border: none;
-    border-radius: 0.3em;
-    padding: 1em 1.5em;
+    border-radius: 10rem;
+    padding: 1.3rem 1.8rem;
     cursor: pointer;
 }
 
@@ -121,6 +129,32 @@ button {
     margin: 1.1em auto 0 auto;
     background-color: #000000;
     color: #ffffff;
+}
+
+#start {
+    background-color: rgb(2, 189, 2);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+#start:hover{
+    box-shadow: 2px 2px 10px rgb(2, 189, 2);
+    transform: scale(1.1);
+    transition: all 0.4s ease;
+}
+
+#back{
+    margin-top: 4rem;
+    background-color: red;
+    padding: 0.8rem 1.3rem 0.8rem 0.8rem;
+}
+#back:hover{
+    box-shadow: 2px 2px 10px rgb(255, 0, 0);
+    transform: scale(1.05);
+    transition: all 0.4s ease;
+}
+
+#time, #moves-count{
+    font-size: 1.3rem;
 }
 
 .controls-container button {

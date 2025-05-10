@@ -19,6 +19,8 @@ const items = [
     { name: "solidaridad", image: "../resources/img/solidaridad.jpg" },
     { name: "responsabilidad", image: "../resources/img/responsabilidad.jpg" },
     { name: "preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
+    { name: "responsabilidadSocial", image: "../resources/img/ResponsabilidadSocial.png" },
+    { name: "transparencia", image: "../resources/img/Transparencia.jpg" },
     // { name: "", image: "" },
 ];
 
@@ -34,7 +36,7 @@ const timeGenerator = () => {
 
     let valorEnSegundos = segundos < 10 ? `0${segundos}` : segundos;
     let valorEnMinutos = minutos < 10 ? `0${minutos}` : minutos;
-    tiempo.innerHTML = `<span>Time:</span>${valorEnMinutos}:${valorEnSegundos}`;
+    tiempo.innerHTML = `<span>Time: </span>${valorEnMinutos}:${valorEnSegundos}`;
 };
 
 const contarMovimientos = () => {
@@ -87,7 +89,10 @@ const generarMatriz = (valoresDeLasCartas, tamaño = 4) => {
                 <div class="card-after">
                 ${valoresDistribuidos[i].tipo === "imagen" 
                     ? `<img src="${valoresDistribuidos[i].image}" class="image"/>` 
-                    : `<span class="palabra">${valoresDistribuidos[i].name}</span>`}
+                    : `<span class="palabra">${
+                        valoresDistribuidos[i].name === "responsabilidadSocial"
+                        ? "responsabilidad<br>social"
+                        : valoresDistribuidos[i].name}</span>`}
                 </div>
             </div>
             `;
