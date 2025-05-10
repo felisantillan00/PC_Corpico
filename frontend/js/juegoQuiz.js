@@ -32,7 +32,6 @@ const siguienteButton = document.getElementById("btn-sig");
 let posicionActual = 0;
 let puntos = 0;
 
-
 function empezar() {
     posicionActual = 0;
     puntos = 0;
@@ -97,7 +96,6 @@ function showPuntos() {
     siguienteButton.style.visibility = "visible";
 }
 
-
 function handleSiguientebutton() {
     posicionActual++;
     if (posicionActual < preguntas.length) {
@@ -116,6 +114,3 @@ siguienteButton.addEventListener("click", () => {
 });
 
 empezar();
-
-
-

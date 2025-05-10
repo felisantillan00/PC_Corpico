@@ -34,7 +34,6 @@ body {
 	transform: translateX(-50%) rotate(180deg);
 	width: 0;
 	height: 0;
-	rotate: 180;
 	border-left: 50px solid transparent;
 	border-right: 50px solid transparent;
 	border-bottom: 50px solid rgb(0, 0, 0);
@@ -45,82 +44,37 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
-    clip-path: polygon(100% 0, 50% 100%, 0 0);
-    transform-origin: center;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 0;
+    left: 0;
+    transform-origin: 50% 50%; /* Centra el origen */
 }
 
 .segment-text {
-	position: absolute;
-	bottom: 150px;
-	width: 0px;
-	height: 0px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transform: rotate(-90deg);
-	font-size: 20px;
+	transform-origin: 0% 0%;
+	transform: rotate(0deg);
+	color: white;
+	font-size: 16px;
 	font-weight: bold;
-    font-family: sans-serif;
-	color: rgb(255, 255, 255);
+	font-family: sans-serif;
+	padding-left: 10px;
 }
 
-.segment:nth-child(1) {
-    background-color: red;
-    transform: rotate(0deg) translateY(-50%);
-}
-
-.segment:nth-child(2) {
-    background-color: blue;
-    transform: rotate(45deg) translateY(-50%);
-}
-
-.segment:nth-child(3) {
-    background-color: green;
-    transform: rotate(90deg) translateY(-50%);
-}
-
-.segment:nth-child(4) {
-    background-color: yellow;
-    transform: rotate(135deg) translateY(-50%);
-}
-
-.segment:nth-child(5) {
-    background-color: black;
-    transform: rotate(180deg) translateY(-50%);
-}
-
-.segment:nth-child(6) {
-    background-color: blueviolet;
-    transform: rotate(225deg) translateY(-50%);
-}
-
-.segment:nth-child(7) {
-    background-color: rosybrown;
-    transform: rotate(270deg) translateY(-50%);
-}
-
-.segment:nth-child(8) {
-    background-color: tomato;
-    transform: rotate(315deg) translateY(-50%);
-}
+.segment:nth-child(even) { background-color: #ffcc00; }
+.segment:nth-child(odd) { background-color: #00bcd4; }
 
 #spinButton {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: red;
-    border: none;
-    font-size: 30px;
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: red;
+	border: none;
+	font-size: 30px;
+	color: white;
+	font-weight: bold;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
