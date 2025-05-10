@@ -94,16 +94,16 @@ function showPuntos() {
     resetEstado();
     preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de ${preguntas.length}!`;
     siguienteButton.innerHTML = "Volver a la ruleta";
-   siguienteButton.style.visibility = "visible";
+    siguienteButton.style.visibility = "visible";
 }
 
 
 function handleSiguientebutton() {
     posicionActual++;
     if (posicionActual < preguntas.length) {
-        showPregunta(); 
+        showPregunta();
     } else {
-        showPuntos(); 
+        showPuntos();
     }
 }
 
