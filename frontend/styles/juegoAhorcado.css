@@ -1,0 +1,169 @@
+body {
+    font-family: sans-serif;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #ccc;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+#word {
+    font-size: 2rem;
+    margin: 20px 0;
+    letter-spacing: 10px;
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.keyboard button {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background: #eee;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.keyboard button.correct {
+    background-color: #8bc34a;
+    color: white;
+}
+
+.keyboard button.wrong {
+    background-color: #f44336;
+    color: white;
+}
+
+.keyboard button:disabled {
+    cursor: not-allowed;
+}
+
+button {
+    padding: 10px 15px;
+    background: #333;
+    color: rgb(140, 140, 140);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.hangman-drawing {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin: 0 auto 20px auto;
+}
+
+/* Base del soporte */
+.base {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #000;
+}
+
+/* Palo vertical */
+.pole-vertical {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    width: 5px;
+    height: 250px;
+    background: #000;
+}
+
+/* Palo horizontal */
+.pole-horizontal {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 73px;
+    height: 5px;
+    background: #000;
+}
+
+/* Cuerda */
+.rope {
+    position: absolute;
+    top: 0;
+    left: 102px;
+    width: 4px;
+    height: 22px;
+    background: #000;
+}
+
+.part {
+    display: none;
+    position: absolute;
+    background: #333;
+}
+
+.head {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 20px;
+    left: calc(50% - 15px);
+    background: transparent;
+    border: 4px solid #333;
+}
+
+.body {
+    width: 4px;
+    height: 40px;
+    top: 55px;
+    left: 52%;
+    transform: translateX(-50%);
+}
+
+.arm-left {
+    width: 4px;
+    height: 30px;
+    top: 55px;
+    left: calc(50% - 20px);
+    transform: rotate(-45deg);
+    transform-origin: top left;
+}
+
+.arm-right {
+    width: 4px;
+    height: 30px;
+    top: 55px;
+    left: calc(50% + 23px);
+    transform: rotate(45deg);
+    transform-origin: top right;
+}
+
+.leg-left {
+    width: 4px;
+    height: 30px;
+    top: 90px;
+    left: calc(50% + 3px);
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.leg-right {
+    width: 4px;
+    height: 30px;
+    top: 90px;
+    left: calc(50% + 0px);
+    transform: rotate(-45deg);
+    transform-origin: top right;
+}

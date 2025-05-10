@@ -180,7 +180,7 @@ function seleccionRespuesta(e) {
         sonidoCorrecto.currentTime = 0;   // si quieres reiniciarlo
         sonidoCorrecto.play();
         btnSeleccionado.classList.add("correcto");
-        puntos++;
+        puntos += 10;
     } else {
         sonidoIncorrecto.currentTime = 0;
         sonidoIncorrecto.play();
@@ -201,12 +201,14 @@ function seleccionRespuesta(e) {
 
     siguienteButton.style.visibility = "visible";
 }
-
 function showPuntos() {
     resetEstado();
     preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de ${preguntas.length}!`;
-    siguienteButton.innerHTML = "Volver a la ruleta";
-    siguienteButton.style.visibility = "visible";
+    let puntaje = parseInt(localStorage.getItem('puntajeJugador') || 0);
+    localStorage.setItem('puntajeJugador', puntaje + puntos);
+    setTimeout(() => {
+        window.location.href = 'menuJuego.html';
+    }, 3000); // 3 segundos
 }
 
 function handleSiguientebutton() {

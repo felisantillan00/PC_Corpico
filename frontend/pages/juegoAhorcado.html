@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+    <link rel="icon" type="image/png" href="../resources/corpico.png">
+    <link rel="stylesheet" href="../styles/juegoAhorcado.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Juego del Ahorcado</h1>
+        <div class="hangman-drawing">
+            <div class="base"></div>
+            <div class="pole-vertical"></div>
+            <div class="pole-horizontal"></div>
+            <div class="rope"></div>
+
+            <div class="head part"></div>
+            <div class="body part"></div>
+            <div class="arm-left part"></div>
+            <div class="arm-right part"></div>
+            <div class="leg-left part"></div>
+            <div class="leg-right part"></div>
+        </div>
+        <div id="word"></div>
+        <div class="keyboard" id="keyboard"></div>
+        <p>Errores: <span id="errors">0</span> / 6</p>
+        <p>Letras usadas: <span id="used-letters"></span></p>
+        <p id="progreso">Palabra 1 / 4</p>
+    </div>
+    <script src="../js/juegoAhorcado.js"></script>
+</body>
+</html>

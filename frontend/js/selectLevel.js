@@ -1,11 +1,11 @@
 document.getElementById('btnFacil').addEventListener('click', () => {
     localStorage.setItem('nivelSeleccionado', 'facil');
-    window.location.href = '../easyLevel.html';
+    window.location.href = '../menuJuego.html';
 });
 
 document.getElementById('btnDificil').addEventListener('click', () => {
     localStorage.setItem('nivelSeleccionado', 'dificil');
-    window.location.href = '../hardLevel.html';
+    window.location.href = '../menuJuego.html';
 });
 
 // Mostrar nombre almacenado (si hay)

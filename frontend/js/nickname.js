@@ -7,5 +7,6 @@ document.getElementById('continuarBtn').addEventListener('click', () => {
     }
 
     localStorage.setItem('nombreJugador', nickname);
+    localStorage.setItem('puntajeJugador', 0);
     window.location.href = './selectLevel.html';
 });
