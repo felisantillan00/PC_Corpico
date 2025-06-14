@@ -9,28 +9,32 @@
 </head>
 
 <body>
-    <p id="puntaje">Puntaje actual: </p>
-    <div class="cartas-container">
+    <div class="contenedor">
+        <p id="puntaje">Puntaje actual: </p>
         <div class="cartas-container">
-            <div class="carta" data-id="quiz" onclick="revelarCarta(this, 'juegoQuiz.html', 'Minijuego de Preguntas')">
-                <div class="frente">?</div>
-                <div class="dorso">Minijuego de Preguntas</div>
-            </div>
-            <div class="carta" data-id="ahorcado"
-                onclick="revelarCarta(this, 'JuegoAhorcado.html', 'Minijuego del ahorcado')">
-                <div class="frente">?</div>
-                <div class="dorso">Minijuego del ahorcado</div>
-            </div>
-            <div class="carta" data-id="relacionar" onclick="revelarCarta(this, 'juegoEncontrar.html', 'Minijuego 3')">
-                <div class="frente">?</div>
-                <div class="dorso">Minijuego de relacionar</div>
-            </div>
-            <div class="carta" data-id="juego4" onclick="revelarCarta(this, 'juego4.html', 'Minijuego 4')">
-                <div class="frente">?</div>
-                <div class="dorso">Minijuego 4</div>
+            <div class="cartas-container">
+                <div class="carta" data-id="quiz" onclick="revelarCarta(this, 'juegoQuiz.html', 'Minijuego de Preguntas')">
+                    <div class="frente"><p>?</p></div>
+                    <div class="dorso">Minijuego de Preguntas</div>
+                </div>
+                <div class="carta" data-id="ahorcado"
+                    onclick="revelarCarta(this, 'JuegoAhorcado.html', 'Minijuego del ahorcado')">
+                    <div class="frente"><p>?</p></div>
+                    <div class="dorso">Minijuego del ahorcado</div>
+                </div>
+                <div class="carta" data-id="relacionar" onclick="revelarCarta(this, 'juegoEncontrar.html', 'Minijuego 3')">
+                    <div class="frente"><p>?</p></div>
+                    <div class="dorso">Minijuego de relacionar</div>
+                </div>
+                <div class="carta" data-id="juego4" onclick="revelarCarta(this, 'juego4.html', 'Minijuego 4')">
+                    <div class="frente"><p>?</p></div>
+                    <div class="dorso">Minijuego 4</div>
+                </div>
             </div>
         </div>
-        <button onclick="reiniciarJuego()" class="btn-reiniciar">Reiniciar juego</button>
+        <div class="btn-contenedor">
+            <button onclick="reiniciarJuego()" class="btn-reiniciar">Reiniciar juego</button>
+        </div>
     </div>
     <script src="../js/menuJuego.js"></script>
 </body>

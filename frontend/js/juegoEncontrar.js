@@ -181,3 +181,7 @@ const iniciar = () => {
     console.log(valoresDeLasCartas);
     generarMatriz(valoresDeLasCartas);
 };
+
+document.getElementById("back").addEventListener("click", () => {
+    window.location.href = "../pages/menuJuego.html";
+}); 
