@@ -1,40 +1,51 @@
+const temas = ["Ayudarse", "Democracia", "Equiedad", "Honestidad", "Igualdad", "PreocupacionXlosDemas", "Responsabilidad", "ResponsabilidadSocial", "Solaridad", "Transaparencia"];
+let temaActual = "";
+let movimientosErroneos = 0;
+let puzzlesResueltos = 0;
+const maxErrores = 20;
+const maxPuzzles = 5;
 
-var rows = 3;
-var columns = 3;
+const rows = 3;
+const columns = 3;
 
-var currTile;
-var otherTile; //blank tile
+let currTile;
+let otherTile;
 
-var turns = 0;
+function iniciarJuego() {
+    temaActual = temas[Math.floor(Math.random() * temas.length)];
+    movimientosErroneos = 0;
 
-// var imgOrder = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var imgOrder = ["4", "2", "8", "5", "1", "6", "7", "9", "3"];
+    document.getElementById("movimientosErrados").innerText = movimientosErroneos;
+    document.getElementById("board").innerHTML = "";
+    document.getElementById("ImageTitle").src = `../resources/img/JuegoPuzzle/${temaActual}/0.jpg`;
 
-window.onload = function () {
+    let piezas = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    piezas = mezclarArray(piezas);
+
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
-
-            //<img id="0-0" src="1.jpg">
             let tile = document.createElement("img");
-            tile.id = r.toString() + "-" + c.toString();
-            tile.src = imgOrder.shift() + ".jpg";
+            tile.id = `${r}-${c}`;
+            tile.src = `../resources/img/JuegoPuzzle/${temaActual}/${piezas.shift()}.jpg`;
 
-            //DRAG FUNCTIONALITY
-            tile.addEventListener("dragstart", dragStart);  //click an image to drag
-            tile.addEventListener("dragover", dragOver);    //moving image around while clicked
-            tile.addEventListener("dragenter", dragEnter);  //dragging image onto another one
-            tile.addEventListener("dragleave", dragLeave);  //dragged image leaving anohter image
-            tile.addEventListener("drop", dragDrop);        //drag an image over another image, drop the image
-            tile.addEventListener("dragend", dragEnd);      //after drag drop, swap the two tiles
+            tile.addEventListener("dragstart", dragStart);
+            tile.addEventListener("dragover", dragOver);
+            tile.addEventListener("dragenter", dragEnter);
+            tile.addEventListener("dragleave", dragLeave);
+            tile.addEventListener("drop", dragDrop);
+            tile.addEventListener("dragend", dragEnd);
 
             document.getElementById("board").append(tile);
-
         }
     }
 }
 
+function mezclarArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
 function dragStart() {
-    currTile = this; //this refers to the img tile being dragged
+    currTile = this;
 }
 
 function dragOver(e) {
@@ -45,43 +56,70 @@ function dragEnter(e) {
     e.preventDefault();
 }
 
-function dragLeave() {
-
-}
+function dragLeave() {}
 
 function dragDrop() {
-    otherTile = this; //this refers to the img tile being dropped on
+    otherTile = this;
 }
 
 function dragEnd() {
-    if (!otherTile.src.includes("3.jpg")) {
-        return;
+    if (!otherTile || !currTile) return;
+
+    const [r1, c1] = currTile.id.split("-").map(Number);
+    const [r2, c2] = otherTile.id.split("-").map(Number);
+
+    const esAdyacente =
+        (Math.abs(r1 - r2) === 1 && c1 === c2) || // vertical
+        (Math.abs(c1 - c2) === 1 && r1 === r2);   // horizontal
+
+    if (esAdyacente) {
+        // Swap válido
+        const currNombre = currTile.src.split("/").pop();
+        const otherNombre = otherTile.src.split("/").pop();
+
+        currTile.src = `../resources/img/JuegoPuzzle/${temaActual}/${otherNombre}`;
+        otherTile.src = `../resources/img/JuegoPuzzle/${temaActual}/${currNombre}`;
+        
+        movimientosErroneos++;
+        document.getElementById("movimientosErrados").innerText = movimientosErroneos;
+
+        setTimeout(() => {
+            if (checkGanado()) {
+                puzzlesResueltos++;
+                if (puzzlesResueltos >= maxPuzzles) {
+                    alert("¡Ganaste el juego! Completaste 5 rompecabezas.");
+                    puzzlesResueltos = 0;
+                } else {
+                    alert(`¡Muy bien! Completaste un puzzle. Van ${puzzlesResueltos}/5`);
+                }
+                iniciarJuego();
+            }
+        }, 100);
+    } else {
+        // Movimiento inválido
+        movimientosErroneos++;
+        document.getElementById("movimientosErrados").innerText = movimientosErroneos;
+
+        if (movimientosErroneos >= maxErrores) {
+            alert("¡Perdiste! Usaste los 20 movimientos inválidos.");
+            puzzlesResueltos = 0;
+            iniciarJuego();
+        }
     }
-
-    let currCoords = currTile.id.split("-"); //ex) "0-0" -> ["0", "0"]
-    let r = parseInt(currCoords[0]);
-    let c = parseInt(currCoords[1]);
-
-    let otherCoords = otherTile.id.split("-");
-    let r2 = parseInt(otherCoords[0]);
-    let c2 = parseInt(otherCoords[1]);
-
-    let moveLeft = r == r2 && c2 == c - 1;
-    let moveRight = r == r2 && c2 == c + 1;
-
-    let moveUp = c == c2 && r2 == r - 1;
-    let moveDown = c == c2 && r2 == r + 1;
-
-    let isAdjacent = moveLeft || moveRight || moveUp || moveDown;
-
-    if (isAdjacent) {
-        let currImg = currTile.src;
-        let otherImg = otherTile.src;
-
-        currTile.src = otherImg;
-        otherTile.src = currImg;
-
-        turns += 1;
-        document.getElementById("turns").innerText = turns;
-    }
+    currTile = null;
+    otherTile = null;
 }
+
+function checkGanado() {
+    const board = document.getElementById("board").children;
+    for (let i = 0; i < board.length; i++) {
+        const nombreArchivo = board[i].src.match(/(\d+\.jpg)$/)?.[1]; // solo "3.jpg"
+        const esperado = `${i + 1}.jpg`;
+        if (nombreArchivo !== esperado) {
+            return false;
+        }
+    }
+    return true;
+}
+
+window.onload = iniciarJuego;
