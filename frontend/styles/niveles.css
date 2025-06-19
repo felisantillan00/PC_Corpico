@@ -24,6 +24,10 @@ input::placeholder{
 .btn-level{
     width: 220px;
 }
+input:focus::placeholder {
+    color: transparent;
+}
+
 .box-nickname{
     display: flex;
     justify-content: center;

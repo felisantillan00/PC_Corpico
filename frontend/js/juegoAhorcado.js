@@ -20,28 +20,9 @@ const partes = document.querySelectorAll(".part");
 const progresoEl = document.getElementById("progreso");
 
 function startGame() {
-    // Elegir una palabra aleatoria
-    palabra = palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
-    letrasUsadas = [];
-    errores = 0;
-
-    // Resetear todo
-    palabraContainer.innerHTML = palabra.replace(/./g, "_ ");
-    erroresEl.textContent = errores;
-    letrasUsadasEl.textContent = "";
-    partes.forEach(part => part.style.display = "none");
-    generarTeclado();
-}
-
-function startGame() {
     if (palabraActual > totalPalabras) {
-        alert(`🎉 ¡Terminaste las ${totalPalabras} palabras!`);
-        preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de las ${totalPalabras} palabras en el minijuego Ahorcado!`;
-        let puntaje = parseInt(localStorage.getItem('puntajeJugador') || 0);
-        localStorage.setItem('puntajeJugador', puntaje + puntos);
-        setTimeout(() => {
-            window.location.href = 'menuJuego.html';
-        }, 3000); // 3 segundos
+        finalizarJuego();
+        return;
     }
 
     palabra = palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
@@ -55,6 +36,26 @@ function startGame() {
     generarTeclado();
     progresoEl.textContent = `Palabra ${palabraActual} / ${totalPalabras}`;
 }
+
+function finalizarJuego() {
+    const modalFinal = document.getElementById("modalFinal");
+    const textoFinal = document.getElementById("textoFinal");
+    const overlay = document.getElementById("overlayBlanco");
+
+    textoFinal.textContent = `🎉 ¡Terminaste! Puntaje total: ${puntos}`;
+    modalFinal.style.display = "block";
+    overlay.style.display = "block";
+
+    let puntaje = parseInt(localStorage.getItem('puntajeJugador') || 0);
+    localStorage.setItem('puntajeJugador', puntaje + puntos);
+
+    setTimeout(() => {
+        modalFinal.style.display = "none";
+        overlay.style.display = "none";
+        window.location.href = 'menuJuego.html';
+    }, 3000);
+}
+
 
 function generarTeclado() {
     teclado.innerHTML = "";
@@ -76,8 +77,6 @@ function manejarLetra(letra, btn) {
     if (palabra.includes(letra)) {
         btn.classList.add("correct");
         actualizarPalabra();
-        puntos = + 6;
-
     } else {
         errores++;
         btn.classList.add("wrong");
@@ -85,12 +84,12 @@ function manejarLetra(letra, btn) {
         mostrarParte(errores);
         if (errores > maxErrores) {
             palabraContainer.textContent = palabra;
+            mostrarMensaje(`😵 ¡Perdiste esta palabra! Puntos: ${puntos}`, "error");
             setTimeout(() => {
-                alert("😵 ¡Perdiste esta palabra!");
                 avanzarRonda();
-            }, 500);
-            puntos = - 3;
+            }, 3000);
         }
+
     }
 
     btn.disabled = true;
@@ -109,11 +108,13 @@ function actualizarPalabra() {
     }
     palabraContainer.textContent = mostrada;
     if (ganaste) {
+        puntos += 10;
+        mostrarMensaje(`🎉 ¡Correcto! Puntos: ${puntos}`, "acierto");
         setTimeout(() => {
-            alert("🎉 ¡Correcto!");
             avanzarRonda();
-        }, 500);
+        }, 3000);
     }
+
 }
 
 function mostrarParte(errorCount) {
@@ -121,6 +122,24 @@ function mostrarParte(errorCount) {
         partes[errorCount - 1].style.display = "block";
     }
 }
+
+function mostrarMensaje(texto, tipo) {
+    const modal = document.getElementById("mensajeModal");
+    const mensajeTexto = document.getElementById("mensajeTexto");
+    const overlay = document.getElementById("overlayBlanco");
+
+    mensajeTexto.textContent = texto;
+    modal.className = `modal-puntos ${tipo}`;
+    modal.style.display = "block";
+    overlay.style.display = "block"; // Mostrar fondo blanco
+
+    setTimeout(() => {
+        modal.style.display = "none";
+        overlay.style.display = "none"; // Ocultar fondo blanco
+    }, 3000);
+}
+
+
 
 function desactivarTeclado() {
     document.querySelectorAll(".keyboard button").forEach(btn => btn.disabled = true);

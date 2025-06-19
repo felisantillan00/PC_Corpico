@@ -11,7 +11,15 @@
 
 <body>
     <div class="container">
-        <h1>Juego del Ahorcado</h1>
+        <div class="titulo">
+            <h1>Juego del Ahorcado</h1>
+        </div>
+        <div class="info-bar">
+            <p id="progreso">Palabra 1 / 5</p>
+            <p style="color: rgb(248, 1, 1);">Errores<span id="errors" style="margin-left: 1rem;">0</span> / 6</p>
+
+        </div>
+
         <div class="hangman-drawing">
             <div class="base"></div>
             <div class="pole-vertical"></div>
@@ -27,10 +35,22 @@
         </div>
         <div id="word"></div>
         <div class="keyboard" id="keyboard"></div>
-        <p>Errores: <span id="errors">0</span> / 6</p>
-        <p>Letras usadas: <span id="used-letters"></span></p>
-        <p id="progreso">Palabra 1 / 4</p>
+        <div class="letras">
+            <p>Letras usadas
+            <div class="letrasUsadas"><span id="used-letters"></span></div>
+            </p>
+        </div>
+        <div id="mensajeModal" class="modal-puntos">
+            <p id="mensajeTexto"></p>
+        </div>
+        <div id="modalFinal" class="modal-final">
+            <p id="textoFinal"></p>
+        </div>
+        <div class="overlay-blanco" id="overlayBlanco"></div>
     </div>
+    
+
     <script src="../js/juegoAhorcado.js"></script>
 </body>
+
 </html>

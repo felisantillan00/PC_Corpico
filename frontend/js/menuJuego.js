@@ -36,8 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const puntajeActual = parseInt(localStorage.getItem('puntajeJugador')) || 0;
+    document.getElementById("puntaje").textContent = `Puntaje actual: ${puntajeActual}`;
+});
 function reiniciarJuego() {
-    localStorage.removeItem('puntajeJugador');
+    localStorage.setItem('puntajeJugador', 0); // Reinicia el puntaje acumulado
+    document.getElementById("puntaje").textContent = "Puntaje actual: 0";
     localStorage.removeItem('minijuegosJugados');
     window.location.href = './start/home.html';
+    alert("🔄 Puntaje reiniciado.");
 }
+
