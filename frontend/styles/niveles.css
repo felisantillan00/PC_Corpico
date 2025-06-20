@@ -22,7 +22,13 @@ input::placeholder{
     font-family: monospace;
 }
 .btn-level{
-    width: 220px;
+   width: 80%;
+    max-width: 300px;
+    padding: 0.8rem 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 2rem;
+    text-align: center;
 }
 input:focus::placeholder {
     color: transparent;
@@ -36,12 +42,11 @@ input:focus::placeholder {
 }
 
 .box-niveles{
-    display: flex;
-    justify-content: center;
+     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    margin-top: 1.3rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 .nombre-jugador {
     display: flex;
@@ -54,4 +59,52 @@ input:focus::placeholder {
     font-weight: bold;
     border-radius: 8px;
     /* z-index: 1000; */
+}
+@media (max-width: 768px) {
+    .box-nickname {
+        flex-direction: column;
+        margin-top: 4rem;
+    }
+
+    .ping {
+        width: 80%;
+        font-size: 22px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .boton {
+        font-size: 26px;
+        padding: 0.5rem 2rem;
+        margin-left: 0;
+    }
+
+    .nombre-jugador {
+        font-size: 20px;
+        width: 90%;
+        padding-left: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ping {
+        width: 90%;
+        font-size: 18px;
+        padding: 0.4rem 1rem;
+    }
+
+    .boton {
+        font-size: 22px;
+        padding: 0.4rem 1.5rem;
+    }
+
+    .nombre-jugador {
+        font-size: 18px;
+    }
+
+    .box-niveles {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
 }
