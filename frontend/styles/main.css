@@ -49,3 +49,35 @@ body {
     box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
     transform: scale(1.07);
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .logo {
+        width: 80%;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-jugar {
+        width: 100%;
+        font-size: 20px;
+        padding: 0.7rem;
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 90%;
+    }
+
+    .btn-jugar {
+        font-size: 18px;
+        padding: 0.6rem;
+        margin-top: 2rem;
+    }
+}
+
