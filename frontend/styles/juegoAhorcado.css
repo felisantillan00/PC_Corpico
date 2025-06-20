@@ -4,14 +4,14 @@ body {
     background-image: url('../resources/fondo.png');
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 100vh; 
     width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: start; 
     margin: 0;
     font-family: 'Play', sans-serif;
+    padding: 2rem 0; 
 }
 
 .titulo {
@@ -59,11 +59,13 @@ body {
 }
 
 .modal-puntos.acierto {
-    background-color: #28a745; /* verde */
+    background-color: #28a745;
+    /* verde */
 }
 
 .modal-puntos.error {
-    background-color: #dc3545; /* rojo */
+    background-color: #dc3545;
+    /* rojo */
 }
 
 .container {
@@ -73,7 +75,7 @@ body {
     box-shadow: 0 0 10px #c4c3c3;
     text-align: center;
     width: 50%;
-    position: relative;
+    margin: 2rem 0;
 }
 
 .container.fondo-blanco {
@@ -91,7 +93,7 @@ body {
     border-radius: 1.5rem;
     z-index: 500;
     display: none;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 
