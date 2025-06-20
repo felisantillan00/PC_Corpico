@@ -21,6 +21,20 @@ if (localStorage.getItem('puntajeJugador') === null) {
     localStorage.setItem('puntajeJugador', 0);
 }
 
+function centrarCartasVisibles() {
+    const contenedor = document.querySelector('.cartas-container');
+    const visibles = Array.from(contenedor.querySelectorAll('.carta'))
+        .filter(carta => carta.style.display !== 'none');
+
+    if (window.innerWidth <= 767 && visibles.length > 0) {
+        const cartaCentral = visibles[Math.floor(visibles.length / 2)];
+        cartaCentral.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center',
+            block: 'nearest'
+        });
+    }
+}
 // Mostrar puntaje y ocultar cartas jugadas
 document.addEventListener('DOMContentLoaded', () => {
     const puntaje = localStorage.getItem('puntajeJugador');
@@ -31,9 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.carta').forEach(carta => {
         const id = carta.dataset.id;
         if (jugados.includes(id)) {
-            carta.style.display = 'none'; // Ocultar carta
+            carta.style.display = 'none';
         }
     });
+
+    centrarCartasVisibles(); // 👈 Llamada al final del DOMContentLoaded
 });
 
 document.addEventListener("DOMContentLoaded", () => {
