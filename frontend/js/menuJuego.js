@@ -1,7 +1,6 @@
 function revelarCarta(carta, url, texto) {
     if (carta.classList.contains('volteada')) return;
     const id = carta.dataset.id;
-    // Marcar el juego como completado
     const jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
     if (!jugados.includes(id)) {
         jugados.push(id);
@@ -16,51 +15,64 @@ function revelarCarta(carta, url, texto) {
     }, 1500);
 }
 
-// Inicializar puntaje si no existe
-if (localStorage.getItem('puntajeJugador') === null) {
+function reiniciarJuego() {
     localStorage.setItem('puntajeJugador', 0);
+    localStorage.removeItem('minijuegosJugados');
+    document.getElementById("puntaje").textContent = "Puntaje actual: 0";
+    alert("🔄 Puntaje reiniciado.");
+    window.location.href = './start/home.html';
 }
 
-function centrarCartasVisibles() {
+
+document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.querySelector('.cartas-container');
-    const visibles = Array.from(contenedor.querySelectorAll('.carta'))
-        .filter(carta => carta.style.display !== 'none');
+    const cartas = [...contenedor.querySelectorAll('.carta')].filter(c => c.style.display !== 'none');
+    const indicadores = document.querySelector('.indicadores');
+    let index = 0;
 
-    if (window.innerWidth <= 767 && visibles.length > 0) {
-        const cartaCentral = visibles[Math.floor(visibles.length / 2)];
-        cartaCentral.scrollIntoView({
-            behavior: 'smooth',
-            inline: 'center',
-            block: 'nearest'
-        });
+    // Crear dots según la cantidad de cartas
+    cartas.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        indicadores.appendChild(dot);
+    });
+    const dots = indicadores.querySelectorAll('.dot');
+
+    function actualizarVista() {
+        contenedor.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index]?.classList.add('active');
     }
-}
-// Mostrar puntaje y ocultar cartas jugadas
-document.addEventListener('DOMContentLoaded', () => {
-    const puntaje = localStorage.getItem('puntajeJugador');
-    document.getElementById('puntaje').textContent = `Puntaje actual: ${puntaje}`;
 
-    const jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
-
-    document.querySelectorAll('.carta').forEach(carta => {
-        const id = carta.dataset.id;
-        if (jugados.includes(id)) {
-            carta.style.display = 'none';
+    document.getElementById('next').addEventListener('click', () => {
+        if (index < cartas.length - 1) {
+            index++;
+            actualizarVista();
         }
     });
 
-    centrarCartasVisibles(); // 👈 Llamada al final del DOMContentLoaded
+    document.getElementById('prev').addEventListener('click', () => {
+        if (index > 0) {
+            index--;
+            actualizarVista();
+        }
+    });
+
+    actualizarVista();
+    const puntaje = parseInt(localStorage.getItem('puntajeJugador')) || 0;
+    document.getElementById("puntaje").textContent = `Puntaje actual: ${puntaje}`;
+
+
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const puntajeActual = parseInt(localStorage.getItem('puntajeJugador')) || 0;
-    document.getElementById("puntaje").textContent = `Puntaje actual: ${puntajeActual}`;
-});
-function reiniciarJuego() {
-    localStorage.setItem('puntajeJugador', 0); // Reinicia el puntaje acumulado
-    document.getElementById("puntaje").textContent = "Puntaje actual: 0";
-    localStorage.removeItem('minijuegosJugados');
-    window.location.href = './start/home.html';
-    alert("🔄 Puntaje reiniciado.");
+
+
+if (jugados.includes(carta.dataset.id)) {
+    carta.style.opacity = '0';
+    carta.style.pointerEvents = 'none';
+    setTimeout(() => {
+        carta.style.display = 'none';
+        carta.style.opacity = '';
+    }, 300); // da tiempo al fade-out
 }
-

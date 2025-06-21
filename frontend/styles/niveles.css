@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-.ping{
+.ping {
     width: 60%;
     padding: 0.4rem 1rem;
     border-radius: 1.5rem;
@@ -10,10 +10,12 @@
     color: black;
     outline: none;
 }
-input::placeholder{
+
+input::placeholder {
     color: #111;
 }
-.boton{
+
+.boton {
     padding: 0.2rem 1rem;
     border-radius: 5rem;
     margin-left: 2rem;
@@ -21,8 +23,9 @@ input::placeholder{
     font-weight: bold;
     font-family: monospace;
 }
-.btn-level{
-   width: 80%;
+
+.btn-level {
+    width: 80%;
     max-width: 300px;
     padding: 0.8rem 1rem;
     font-size: 20px;
@@ -30,24 +33,26 @@ input::placeholder{
     border-radius: 2rem;
     text-align: center;
 }
+
 input:focus::placeholder {
     color: transparent;
 }
 
-.box-nickname{
+.box-nickname {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 7rem;
 }
 
-.box-niveles{
-     display: flex;
+.box-niveles {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
 .nombre-jugador {
     display: flex;
     width: 70%;
@@ -60,51 +65,38 @@ input:focus::placeholder {
     border-radius: 8px;
     /* z-index: 1000; */
 }
+
+.box-niveles .boton {
+    width: 15rem;
+   
+}
+
 @media (max-width: 768px) {
     .box-nickname {
-        flex-direction: column;
+
         margin-top: 4rem;
+        flex-wrap: wrap;
+        /* opcional por si falta espacio */
     }
 
     .ping {
-        width: 80%;
+        width: 65%;
         font-size: 22px;
-        margin-right: 0;
-        margin-bottom: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 0;
     }
 
     .boton {
-        font-size: 26px;
+        font-size: 20px;
         padding: 0.5rem 2rem;
         margin-left: 0;
     }
+
 
     .nombre-jugador {
         font-size: 20px;
         width: 90%;
         padding-left: 1rem;
         padding-top: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .ping {
-        width: 90%;
-        font-size: 18px;
-        padding: 0.4rem 1rem;
-    }
-
-    .boton {
-        font-size: 22px;
-        padding: 0.4rem 1.5rem;
-    }
-
-    .nombre-jugador {
-        font-size: 18px;
-    }
-
-    .box-niveles {
-        gap: 1rem;
-        margin-top: 1rem;
     }
 }

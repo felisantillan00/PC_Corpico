@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elige tu minijuego</title>
     <link rel="icon" type="image/png" href="../resources/corpico.png">
     <link rel="stylesheet" href="../styles/menuJuego.css">
@@ -19,6 +19,7 @@
                 </div>
                 <div class="dorso">Minijuego de Preguntas</div>
             </div>
+
             <div class="carta" data-id="ahorcado"
                 onclick="revelarCarta(this, 'JuegoAhorcado.html', 'Minijuego del ahorcado')">
                 <div class="frente">
@@ -26,6 +27,7 @@
                 </div>
                 <div class="dorso">Minijuego del ahorcado</div>
             </div>
+
             <div class="carta" data-id="relacionar"
                 onclick="revelarCarta(this, 'juegoEncontrar.html', 'Minijuego de memoria')">
                 <div class="frente">
@@ -33,6 +35,7 @@
                 </div>
                 <div class="dorso">Minijuego de memoria</div>
             </div>
+
             <div class="carta" data-id="juego4"
                 onclick="revelarCarta(this, 'juegoPuzzle.html', 'Minijuego de rompecabezas')">
                 <div class="frente">
@@ -40,12 +43,22 @@
                 </div>
                 <div class="dorso">Minijuego de rompecabezas</div>
             </div>
+
+            <div class="btn-contenedor">
+                <button onclick="reiniciarJuego()" class="btn-reiniciar">Reiniciar juego</button>
+            </div>
         </div>
-        <div class="btn-contenedor">
-            <button onclick="reiniciarJuego()" class="btn-reiniciar">Reiniciar juego</button>
+        <!-- Bloque solo para móviles -->
+        <div class="cartas-movil-wrapper">
+            <button id="prev" class="navegacion-btn"></button>
+
+            <div class="carta-movil-centro"></div> <!-- Aquí va una carta visible a la vez -->
+
+            <button id="next" class="navegacion-btn"></button>
         </div>
-    </div>
-    <script src="../js/menuJuego.js"></script>
+        <div class="indicadores"></div>
+
+        <script src="../js/menuJuego.js"></script>
 </body>
 
 </html>
