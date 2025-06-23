@@ -11,34 +11,36 @@
 
 <body>
     <div class="container">
-        <div class="titulo">
-            <h1>Juego del Ahorcado</h1>
-        </div>
-        <div class="info-bar">
-            <p id="progreso">Palabra 1 / 5</p>
-            <p style="color: rgb(248, 1, 1);">Errores<span id="errors" style="margin-left: 1rem;">0</span> / 6</p>
+        <div class="contenido-juego">
+            <div class="titulo">
+                <h1>Juego del Ahorcado</h1>
+            </div>
+            <div class="info-bar">
+                <p id="progreso">Palabra 1 / 5</p>
+                <p style="color: rgb(248, 1, 1);">Errores<span id="errors" style="margin-left: 1rem;">0</span> / 6</p>
 
-        </div>
+            </div>
 
-        <div class="hangman-drawing">
-            <div class="base"></div>
-            <div class="pole-vertical"></div>
-            <div class="pole-horizontal"></div>
-            <div class="rope"></div>
+            <div class="hangman-drawing">
+                <div class="base"></div>
+                <div class="pole-vertical"></div>
+                <div class="pole-horizontal"></div>
+                <div class="rope"></div>
 
-            <div class="head part"></div>
-            <div class="body part"></div>
-            <div class="arm-left part"></div>
-            <div class="arm-right part"></div>
-            <div class="leg-left part"></div>
-            <div class="leg-right part"></div>
-        </div>
-        <div id="word"></div>
-        <div class="keyboard" id="keyboard"></div>
-        <div class="letras">
-            <p>Letras usadas
-            <div class="letrasUsadas"><span id="used-letters"></span></div>
-            </p>
+                <div class="head part"></div>
+                <div class="body part"></div>
+                <div class="arm-left part"></div>
+                <div class="arm-right part"></div>
+                <div class="leg-left part"></div>
+                <div class="leg-right part"></div>
+            </div>
+            <div id="word"></div>
+            <div class="keyboard" id="keyboard"></div>
+            <div class="letras">
+                <p>Letras usadas
+                <div class="letrasUsadas"><span id="used-letters"></span></div>
+                </p>
+            </div>
         </div>
         <div id="mensajeModal" class="modal-puntos">
             <p id="mensajeTexto"></p>
@@ -47,8 +49,9 @@
             <p id="textoFinal"></p>
         </div>
         <div class="overlay-blanco" id="overlayBlanco"></div>
+
     </div>
-    
+
 
     <script src="../js/juegoAhorcado.js"></script>
 </body>

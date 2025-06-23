@@ -177,7 +177,7 @@ function seleccionRespuesta(e) {
     const esCorrecto = btnSeleccionado.dataset.correcta === "true";
 
     if (esCorrecto) {
-        sonidoCorrecto.currentTime = 0;   // si quieres reiniciarlo
+        sonidoCorrecto.currentTime = 0;  
         sonidoCorrecto.play();
         btnSeleccionado.classList.add("correcto");
         puntos += 10;
@@ -201,9 +201,10 @@ function seleccionRespuesta(e) {
 
     siguienteButton.style.visibility = "visible";
 }
+
 function showPuntos() {
     resetEstado();
-    preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de ${preguntas.length}!`;
+    preguntaElement.innerHTML = `Tus puntos fueron ${puntos} de 80!`;
     let puntaje = parseInt(localStorage.getItem('puntajeJugador') || 0);
     localStorage.setItem('puntajeJugador', puntaje + puntos);
     setTimeout(() => {

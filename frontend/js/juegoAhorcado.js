@@ -82,10 +82,12 @@ function manejarLetra(letra, btn) {
         btn.classList.add("wrong");
         erroresEl.textContent = errores;
         mostrarParte(errores);
-        if (errores > maxErrores) {
+        if (errores == maxErrores) {
             palabraContainer.textContent = palabra;
+            document.querySelector(".contenido-juego").classList.add("invisible");
             mostrarMensaje(`😵 ¡Perdiste esta palabra! Puntos: ${puntos}`, "error");
             setTimeout(() => {
+                document.querySelector(".contenido-juego").classList.remove("invisible");
                 avanzarRonda();
             }, 3000);
         }
@@ -109,11 +111,15 @@ function actualizarPalabra() {
     palabraContainer.textContent = mostrada;
     if (ganaste) {
         puntos += 10;
+        document.querySelector(".contenido-juego").classList.add("invisible");
         mostrarMensaje(`🎉 ¡Correcto! Puntos: ${puntos}`, "acierto");
         setTimeout(() => {
+            document.querySelector(".contenido-juego").classList.remove("invisible");
             avanzarRonda();
         }, 3000);
     }
+
+
 
 }
 

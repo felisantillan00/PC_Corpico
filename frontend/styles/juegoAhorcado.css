@@ -42,33 +42,16 @@ body {
     font-size: 1.2em;
 }
 
-.modal-puntos {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #000;
-    color: #fff;
-    padding: 20px 40px;
-    border-radius: 15px;
-    font-size: 1.5em;
-    z-index: 10000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    display: none;
-}
-
 .modal-puntos.acierto {
     background-color: #28a745;
-    /* verde */
 }
 
 .modal-puntos.error {
     background-color: #dc3545;
-    /* rojo */
 }
 
 .container {
+    position: relative;
     background: white;
     padding: 2rem;
     border-radius: 1.5rem;
@@ -78,27 +61,45 @@ body {
     margin: 2rem 0;
 }
 
+
 .container.fondo-blanco {
     background-color: rgb(248, 248, 248) !important;
     transition: background-color 0.3s ease-in-out;
 }
 
 .overlay-blanco {
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgb(248, 248, 248);
     border-radius: 1.5rem;
-    z-index: 500;
+    z-index: 5;
     display: none;
     pointer-events: none;
 }
 
 
+.modal-puntos {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    color: #fff;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 1.5em;
+    z-index: 10; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: none;
+    max-width: 90%;
+}
+
 .modal-final {
-    position: fixed;
+    position: absolute; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -109,9 +110,11 @@ body {
     font-size: 1.5em;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     text-align: center;
-    z-index: 10001;
+    z-index: 10;
     display: none;
+    max-width: 90%;
 }
+
 
 #word {
     font-size: 2rem;
@@ -167,7 +170,6 @@ button {
     margin: 0 auto 20px auto;
 }
 
-/* Base del soporte */
 .base {
     position: absolute;
     bottom: 0;
@@ -265,4 +267,7 @@ button {
     left: calc(50% + 0px);
     transform: rotate(-45deg);
     transform-origin: top right;
+}
+.invisible {
+    visibility: hidden;
 }
