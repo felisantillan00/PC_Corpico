@@ -35,6 +35,9 @@ function startGame() {
     partes.forEach(part => part.style.display = "none");
     generarTeclado();
     progresoEl.textContent = `Palabra ${palabraActual} / ${totalPalabras}`;
+    palabraContainer.innerHTML = palabra.replace(/./g, "_ ");
+
+    fitWord();
 }
 
 function finalizarJuego() {
@@ -119,7 +122,8 @@ function actualizarPalabra() {
         }, 3000);
     }
 
-
+    palabraContainer.textContent = mostrada;
+    fitWord();
 
 }
 
@@ -155,5 +159,29 @@ function avanzarRonda() {
     palabraActual++;
     startGame();
 }
+
+function fitWord() {
+  const el = document.getElementById("word");
+  const parentWidth = el.parentElement.clientWidth - 16;
+
+  let fontSize = 100;
+  let letterSpacing = 20;
+
+  el.style.fontSize = fontSize + 'px';
+  el.style.letterSpacing = letterSpacing + 'px';
+
+  const isMobile = window.innerWidth <= 767;
+  const minFontSize = isMobile ? 16 : 40; // más pequeño en móviles
+
+  while (el.scrollWidth > parentWidth && fontSize > minFontSize) {
+    fontSize *= 0.95;
+    letterSpacing *= 0.95;
+    el.style.fontSize = fontSize + 'px';
+    el.style.letterSpacing = letterSpacing + 'px';
+  }
+
+}
+
+
 // Iniciar juego al cargar
 startGame();

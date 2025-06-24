@@ -10,53 +10,40 @@
 </head>
 
 <body>
-    <div class="contenedor">
-        <p id="puntaje">Puntaje actual: </p>
-        <div class="cartas-container">
-            <div class="carta" data-id="quiz" onclick="revelarCarta(this, 'juegoQuiz.html', 'Minijuego de Preguntas')">
-                <div class="frente">
-                    <p>?</p>
-                </div>
-                <div class="dorso">Minijuego de Preguntas</div>
-            </div>
+   
+  <div class="contenedor">
+    <p id="puntaje">Puntaje actual: 0</p>
 
-            <div class="carta" data-id="ahorcado"
-                onclick="revelarCarta(this, 'JuegoAhorcado.html', 'Minijuego del ahorcado')">
-                <div class="frente">
-                    <p>?</p>
-                </div>
-                <div class="dorso">Minijuego del ahorcado</div>
-            </div>
-
-            <div class="carta" data-id="relacionar"
-                onclick="revelarCarta(this, 'juegoEncontrar.html', 'Minijuego de memoria')">
-                <div class="frente">
-                    <p>?</p>
-                </div>
-                <div class="dorso">Minijuego de memoria</div>
-            </div>
-
-            <div class="carta" data-id="juego4"
-                onclick="revelarCarta(this, 'juegoPuzzle.html', 'Minijuego de rompecabezas')">
-                <div class="frente">
-                    <p>?</p>
-                </div>
-                <div class="dorso">Minijuego de rompecabezas</div>
-            </div>
-
-            <div class="btn-contenedor">
-                <button onclick="reiniciarJuego()" class="btn-reiniciar">Reiniciar juego</button>
-            </div>
+    <div class="carrusel-wrapper">
+      <button id="prev" class="navegacion-btn"></button>
+      <div class="cartas-container">
+        <!-- CARTAS: duplicar/modificar según tus minijuegos -->
+        <div class="carta" data-id="quiz" onclick="revelarCarta(this,'juegoQuiz.html','Minijuego de Preguntas')">
+          <div class="frente"><p>?</p></div>
+          <div class="dorso">Minijuego de Preguntas</div>
         </div>
-        <!-- Bloque solo para móviles -->
-        <div class="cartas-movil-wrapper">
-            <button id="prev" class="navegacion-btn"></button>
-
-            <div class="carta-movil-centro"></div> <!-- Aquí va una carta visible a la vez -->
-
-            <button id="next" class="navegacion-btn"></button>
+        <div class="carta" data-id="ahorcado" onclick="revelarCarta(this,'JuegoAhorcado.html','Minijuego del ahorcado')">
+          <div class="frente"><p>?</p></div>
+          <div class="dorso">Minijuego del ahorcado</div>
         </div>
-        <div class="indicadores"></div>
+        <div class="carta" data-id="relacionar" onclick="revelarCarta(this,'juegoEncontrar.html','Minijuego de memoria')">
+          <div class="frente"><p>?</p></div>
+          <div class="dorso">Minijuego de memoria</div>
+        </div>
+        <div class="carta" data-id="puzzle" onclick="revelarCarta(this,'juegoPuzzle.html','Minijuego de rompecabezas')">
+          <div class="frente"><p>?</p></div>
+          <div class="dorso">Minijuego de rompecabezas</div>
+        </div>
+      </div>
+      <button id="next" class="navegacion-btn"></button>
+    </div>
+
+    <div class="indicadores"></div>
+
+    <div class="btn-contenedor">
+      <button id="reiniciar" class="btn-reiniciar" onclick="reiniciarJuego()">Reiniciar juego</button>
+    </div>
+  </div>
 
         <script src="../js/menuJuego.js"></script>
 </body>

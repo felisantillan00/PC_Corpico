@@ -169,3 +169,61 @@ button {
     font-size: 1.8em;
     margin: 0.6em 0 1em 0;
 }
+
+@media (max-width: 767px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden; /* evito scroll vertical */
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* centro vertical y horizontal */
+    padding: 0;
+    margin: 0.2rem;
+  }
+
+  .wrapper {
+    width: 95vw;
+    max-width: 400px;
+    padding: 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh; /* para que quepa vertical */
+  }
+
+  .stats-container {
+    font-size: 1rem;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+  }
+
+  .game-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4em;
+    height: auto;
+  }
+
+  .card-container {
+    height: 6em;
+  }
+
+  .palabra {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  button#stop {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-top: auto;
+  }
+}
