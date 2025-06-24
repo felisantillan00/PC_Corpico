@@ -94,7 +94,7 @@ input:focus::placeholder {
         margin-bottom: 0;
     }
 
-    .box-niveles{|
+    .box-niveles{
         display: flex;
         justify-content: left;
         flex-direction: column;
