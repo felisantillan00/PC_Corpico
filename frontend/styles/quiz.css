@@ -98,3 +98,22 @@ h2{
     font-weight: bold; /* Opcional: resaltar el texto */
 }
 
+@media (max-width: 767px) {
+ .container {
+    max-width: 500px;    
+    padding: 1.5rem;
+  }
+  #pregunta {
+    font-size: 1.6rem;
+  }
+  .btn-preg {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  #btn-sig {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+}
+

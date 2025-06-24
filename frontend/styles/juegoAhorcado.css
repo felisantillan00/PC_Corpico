@@ -4,14 +4,14 @@ body {
     background-image: url('../resources/fondo.png');
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh; 
+    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: start; 
+    align-items: start;
     margin: 0;
     font-family: 'Play', sans-serif;
-    padding: 2rem 0; 
+    padding: 2rem 0;
 }
 
 .titulo {
@@ -68,7 +68,7 @@ body {
 }
 
 .overlay-blanco {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -91,7 +91,7 @@ body {
     padding: 20px 40px;
     border-radius: 15px;
     font-size: 1.5em;
-    z-index: 10; 
+    z-index: 10;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     text-align: center;
     display: none;
@@ -99,7 +99,7 @@ body {
 }
 
 .modal-final {
-    position: absolute; 
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -117,7 +117,7 @@ body {
 
 
 #word {
-    font-size: 2rem;
+    font-size: 4rem;
     margin: 2rem 0;
     letter-spacing: 0.5rem;
 }
@@ -268,6 +268,177 @@ button {
     transform: rotate(-45deg);
     transform-origin: top right;
 }
+
 .invisible {
     visibility: hidden;
+}
+
+@media (max-width: 767px) {
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .container {
+        width: calc(100% - 4rem);
+        /* siempre 1rem de margen a cada lado */
+        max-width: 500px;
+        padding: 1rem;
+        margin-top: 3.4rem;
+        margin-bottom: 2rem;
+    }
+
+    /* 2) Título con espacio inferior uniforme */
+    .titulo {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .titulo h1 {
+        font-size: 1.5rem;
+    }
+
+    .info-bar p {
+        flex: 1 1 45%;
+        /* cada dato ocupa ~45% */
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Ajuste proporcional de partes */
+    .head {
+        width: 24px;
+        height: 24px;
+        top: 20px;
+        left: calc(50% - 0.70rem);
+        border-width: 3px;
+    }
+
+    .body {
+        height: 34px;
+        top: 46px;
+        left: 102px;
+    }
+
+    .arm-left {
+        height: 24px;
+        top: 50px;
+        left: calc(50% - 16px);
+    }
+
+    .arm-right {
+        height: 24px;
+        top: 50px;
+        left: calc(50% + 16px);
+    }
+
+    .leg-left {
+        height: 24px;
+        top: 76px;
+        left: calc(50% + 0px);
+    }
+
+    .leg-right {
+        height: 24px;
+        top: 76px;
+        left: calc(50% + 0px);
+    }
+
+
+    /* 6) Teclado simétrico y centrado */
+    .keyboard {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+    }
+
+    .keyboard button {
+        width: 100%;
+        max-width: 36px;
+        padding: 6px 0;
+        font-size: 0.9rem;
+    }
+
+    /* 7) Letras usadas centradas */
+    .letras {
+        margin: 0 1rem 1rem;
+        text-align: center;
+    }
+
+    .letrasUsadas {
+        font-size: 1rem;
+        letter-spacing: 0.4rem;
+    }
+
+    /* 8) Modales adaptados */
+    .modal-puntos,
+    .modal-final {
+        font-size: 1.2rem;
+        padding: 1rem 1.5rem;
+        max-width: 90%;
+    }
+
+    /* 9) Botones genéricos más pequeños */
+    button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .info-bar {
+        position: relative;
+        z-index: 2;
+        /* encima de la horca */
+        margin-bottom: 1.5rem;
+        /* más espacio debajo */
+        padding: 0 1rem;
+    }
+
+    /* 2) Horca por debajo */
+    .hangman-drawing {
+        position: relative;
+        z-index: 1;
+        margin-top: 0;
+        /* elimina margen negativo si lo hubo */
+    }
+
+    /* 3) Palabra en una sola línea, con scroll si es muy larga */
+    #word {
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+        padding: 0 0.5rem;
+
+        font-size: clamp(1.2rem, 6vw, 2rem);
+        letter-spacing: clamp(0.2rem, 1.2vw, 0.5rem);
+
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* 4) Aseguramos que el contenedor del #word y la horca no colisionen */
+    .hangman-drawing {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #word {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 4rem;
+        letter-spacing: 1rem;
+        box-sizing: border-box;
+        padding: 0 0.5rem;
+    }
 }
