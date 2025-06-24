@@ -17,11 +17,14 @@ let juegoTerminado = false;
 let currTile = null;
 let otherTile = null;
 
+let puntaje = 0;
+
 function iniciarJuego() {
     temaActual = temas[Math.floor(Math.random() * temas.length)];
     movimientosErroneos = 0;
 
     document.getElementById("movimientosErrados").innerText = movimientosErroneos;
+    document.getElementById("puntaje").innerText = puntaje;
     document.getElementById("board").innerHTML = "";
     document.getElementById("ImageTitle").src = `../resources/img/JuegoPuzzle/${temaActual}/0.jpg`;
 
@@ -44,35 +47,56 @@ function manejarClick() {
     if (!currTile) {
         currTile = this;
         currTile.classList.add("seleccionada");
-    } else if (this === currTile) {
-        currTile.classList.remove("seleccionada");
-        currTile = null;
-    } else {
-        otherTile = this;
-
-        const tempSrc = currTile.src;
-        currTile.src = otherTile.src;
-        otherTile.src = tempSrc;
-
-        currTile.classList.remove("seleccionada");
-        currTile = null;
-        otherTile = null;
+        return;
     }
+
+    if (this === currTile) {
+        currTile.classList.remove("seleccionada");
+        currTile = null;
+        return;
+    }
+
+    otherTile = this;
+    const tempSrc = currTile.src;
+    currTile.src = otherTile.src;
+    otherTile.src = tempSrc;
+
     currTile.classList.remove("seleccionada");
 
+    currTile = null;
+    otherTile = null;
 
     if (!checkGanado()) {
         movimientosErroneos++;
         document.getElementById("movimientosErrados").innerText = movimientosErroneos;
 
-        if (movimientosErroneos == maxErrores) {
-            alert("❌ Alcanzaste el máximo de errores permitidos. Reiniciando juego.");
-            puzzlesResueltos = 0;
-            iniciarJuego();
+        if (movimientosErroneos === maxErrores) {
+            mostrarModal("❌ Alcanzaste el máximo de errores. Reiniciando juego...", () => {
+                puzzlesResueltos = 0;
+                puntaje = 0;
+                iniciarJuego();
+            });
         }
-    }
 
+    }
 }
+function mostrarModal(texto, callback) {
+    const modal = document.getElementById("modal");
+    const modalTexto = document.getElementById("modal-texto");
+    const container = document.querySelector(".container");
+
+    modalTexto.innerText = texto;
+    modal.classList.remove("oculto");
+    container.classList.add("desenfocado");
+
+    setTimeout(() => {
+        modal.classList.add("oculto");
+        container.classList.remove("desenfocado");
+        if (callback) callback();
+    }, 3000); // 3 segundos
+}
+
+
 
 function mezclarArray(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -107,16 +131,23 @@ window.onload = () => {
         boton.addEventListener("click", () => {
             if (checkGanado()) {
                 puzzlesResueltos++;
-                if (puzzlesResueltos >= maxPuzzles) {
-                    setTimeout(() => {
-                        alert(`🎉 ¡Ganaste el juego! Completaste ${puzzlesResueltos} rompecabezas.`);
+                puntaje += 10;
+                document.getElementById("puntaje").innerText = puntaje;
+
+                if (puzzlesResueltos == maxPuzzles) {
+                    mostrarModal(`🎉 ¡Ganaste el juego! Completaste ${puzzlesResueltos} rompecabezas.`, () => {
+                        let puntajeActual = parseInt(localStorage.getItem("puntajeJugador")) || 0;
+                        localStorage.setItem("puntajeJugador", puntajeActual + puntaje);
                         window.location.href = "menuJuego.html";
-                    }, 3000);
-                } else {
-                    alert(`✅ ¡Muy bien! Completaste un puzzle. Van ${puzzlesResueltos}/5`);
-                    iniciarJuego();
+                    });
+                }
+                else {
+                    mostrarModal(`✅ ¡Muy bien! Completaste un puzzle. Van ${puzzlesResueltos}/5`, () => {
+                        iniciarJuego();
+                    });
                 }
             }
+
 
         });
     }

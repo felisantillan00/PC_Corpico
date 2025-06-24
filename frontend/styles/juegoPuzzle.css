@@ -7,34 +7,63 @@ body {
     min-height: 100vh;
     width: 100%;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: start; 
     font-family: 'Play', sans-serif;
+}
+.container{
+    position: relative;
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 10px #c4c3c3;
+    text-align: center;
+    width: 50%;
+    margin: 2rem 0;
+}
+
+.color-prin{
+    background-color: #71D374;
+    border: 0.3rem solid #1B682D;
+}
+
+.btn-jugar{
+    padding: 0.5rem 3rem;
+    margin: 2rem;
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-jugar:hover{
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+    transform: scale(1.07);
 }
 
 .seleccionada {
-    outline: 4px solid #00aaff;
-    box-shadow: 0 0 15px #00aaff;
+    outline: 4px solid rgb(253, 253, 100);
+    box-shadow: 0 0 15px rgb(253, 253, 76);
     transform: scale(1.1);
     z-index: 10;
     position: relative;
 }
+#ImageTitle{
+    width: 35%;
+    height: 35%;
+}
 #board img {
     width: 118px;
     height: 118px;
-    border: 1px solid #0c67ae;
+    border: 1px solid rgb(255, 255, 91);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#title {
-    height: 150px;
-    width: 400px;
 }
 
 #board {
     width: 360px;
     height: 360px;
-    background-color: lightblue;
-    border: 10px solid #0c67ae;
-
+    background-color: rgb(253, 253, 99);
+    border: 10px solid rgb(253, 253, 100);
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -43,5 +72,42 @@ body {
 #board img {
     width: 118px;
     height: 118px;
-    border: 1px solid #0c67ae;
+    border: 1px solid rgb(253, 253, 100);
+}
+
+.oculto {
+    display: none !important;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.973);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.5rem;
+}
+.container.desenfocado > *:not(#modal) {
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111111;
+    text-align: center;
+    max-width: 80%;
+}
+.container.desenfocado {
+    background-color: white !important;
 }
