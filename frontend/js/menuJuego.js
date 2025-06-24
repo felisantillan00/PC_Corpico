@@ -17,15 +17,36 @@ function revelarCarta(carta, url, texto) {
 
     setTimeout(() => location.href = url, 1000);
 }
-
-function reiniciarJuego() {
-    localStorage.setItem('puntajeJugador', 0);
-    localStorage.removeItem('minijuegosJugados');
-    document.getElementById("puntaje").textContent = "Puntaje actual: 0";
-    alert("🔄 Puntaje reiniciado.");
-    window.location.href = './start/home.html';
+function mostrarModal(idModal) {
+    document.querySelector(".contenedor").classList.add("desenfocado");
+    document.getElementById(idModal).classList.remove("oculto");
 }
 
+function ocultarModal(idModal) {
+    document.getElementById(idModal).classList.add("oculto");
+    document.querySelector(".contenedor").classList.remove("desenfocado");
+}
+
+function reiniciarJuego() {
+    mostrarModal('modal-confirmacion');
+
+    document.getElementById('btnConfirmarReinicio').onclick = () => {
+        localStorage.setItem('puntajeJugador', 0);
+        localStorage.removeItem('minijuegosJugados');
+        document.getElementById("puntaje").textContent = "Puntaje actual: 0";
+        ocultarModal('modal-confirmacion');
+
+        mostrarModal('modal-exito');
+        setTimeout(() => {
+            ocultarModal('modal-exito');
+            window.location.href = './start/home.html';
+        }, 2000);
+    };
+
+    document.getElementById('btnCancelarReinicio').onclick = () => {
+        ocultarModal('modal-confirmacion');
+    };
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.querySelector('.cartas-container');
