@@ -16,14 +16,14 @@ body {
     margin: 0;
 }
 .logo{
-    width: 60%;
-    margin-bottom: 20px;
+    width: 450px;
+    margin-bottom: 30px;
     filter: drop-shadow(2px 2px 20px rgb(0, 0, 0, 0.3));
 }
 .container{
     background-color: #ffffff;
-    width: 70%;
-    height: 70%;
+    width: 70rem;
+    height: 30rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,22 +32,37 @@ body {
     box-shadow: 0 0 30px rgb(0, 0, 0, 0.3);
 }
 .color-prin{
-    background-color: #71D374;
-    border: 0.3rem solid #1B682D;
+    background-color: #16a34a;
+    /* border: 0.3rem solid #1B682D; */
+    border: none;
 }
 
 .btn-jugar{
-    padding: 0.5rem 3rem;
-    margin-top: 6.9rem;
-    border-radius: 1.5rem;
+    background-color: #16a34a;
+    border: none;
+    padding: 0.4rem 3rem;
+    margin-top: 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.2s ease;
 }
 .btn-jugar:hover{
-    box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    background-color: #15803d;
     transform: scale(1.07);
+}
+.volver{
+    margin-top: 1.5rem;
+}
+.volver a{
+    text-decoration: none;
+    color: #303030;
+    font-weight: 600;
 }
 @media (max-width: 768px) {
     .container {
@@ -78,6 +93,10 @@ body {
         font-size: 18px;
         padding: 0.6rem;
         margin-top: 2rem;
+    }
+    
+    .container p{
+        text-align: center;
     }
 }
 
