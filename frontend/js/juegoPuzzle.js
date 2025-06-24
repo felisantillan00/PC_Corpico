@@ -83,15 +83,19 @@ function manejarClick() {
 function mostrarModal(texto, callback) {
     const modal = document.getElementById("modal");
     const modalTexto = document.getElementById("modal-texto");
+    const container = document.querySelector(".container");
 
     modalTexto.innerText = texto;
     modal.classList.remove("oculto");
+    container.classList.add("desenfocado");
 
     setTimeout(() => {
         modal.classList.add("oculto");
+        container.classList.remove("desenfocado");
         if (callback) callback();
     }, 3000); // 3 segundos
 }
+
 
 
 function mezclarArray(array) {
