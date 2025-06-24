@@ -1,7 +1,7 @@
 const temas = [
     "Ayudarse", "Democracia", "Equidad", "Honestidad", "Igualdad",
     "PreocupacionXlosDemas", "Responsabilidad", "ResponsabilidadSocial",
-    "Solaridad", "Transaparencia"
+    "Solidaridad", "Transparencia"
 ];
 
 let temaActual = "";
@@ -12,6 +12,7 @@ const maxPuzzles = 5;
 
 const rows = 3;
 const columns = 3;
+let juegoTerminado = false;
 
 let currTile = null;
 let otherTile = null;
@@ -31,6 +32,7 @@ function iniciarJuego() {
             const valor = piezas.shift();
             const tile = document.createElement("img");
             tile.src = `../resources/img/JuegoPuzzle/${temaActual}/${valor}.jpg`;
+            console.log(`Cargando: resources/img/JuegoPuzzle/${temaActual}/${valor}.jpg`);
             tile.id = `${r}-${c}`;
             tile.addEventListener("click", manejarClick);
             document.getElementById("board").append(tile);
@@ -56,6 +58,20 @@ function manejarClick() {
         currTile = null;
         otherTile = null;
     }
+    currTile.classList.remove("seleccionada");
+
+
+    if (!checkGanado()) {
+        movimientosErroneos++;
+        document.getElementById("movimientosErrados").innerText = movimientosErroneos;
+
+        if (movimientosErroneos == maxErrores) {
+            alert("❌ Alcanzaste el máximo de errores permitidos. Reiniciando juego.");
+            puzzlesResueltos = 0;
+            iniciarJuego();
+        }
+    }
+
 }
 
 function mezclarArray(array) {
@@ -76,8 +92,6 @@ function checkGanado() {
         const match = src.match(/(\d+)\.jpg$/);
         const numero = match ? match[1] : null;
         const esperado = `${i + 1}`;
-
-        console.log(`🧩 Posición ${i} → comparando ${numero} === ${esperado}`);
         if (numero !== esperado) return false;
     }
 
@@ -94,15 +108,16 @@ window.onload = () => {
             if (checkGanado()) {
                 puzzlesResueltos++;
                 if (puzzlesResueltos >= maxPuzzles) {
-                    alert("🎉 ¡Ganaste el juego! Completaste 5 rompecabezas.");
-                    puzzlesResueltos = 0;
+                    setTimeout(() => {
+                        alert(`🎉 ¡Ganaste el juego! Completaste ${puzzlesResueltos} rompecabezas.`);
+                        window.location.href = "menuJuego.html";
+                    }, 3000);
                 } else {
                     alert(`✅ ¡Muy bien! Completaste un puzzle. Van ${puzzlesResueltos}/5`);
+                    iniciarJuego();
                 }
-                iniciarJuego();
-            } else {
-                alert("❌ El puzzle aún no está completo.");
             }
+
         });
     }
 };
