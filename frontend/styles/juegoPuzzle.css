@@ -9,10 +9,11 @@ body {
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: start; 
+    align-items: start;
     font-family: 'Play', sans-serif;
 }
-.container{
+
+.container {
     position: relative;
     background: white;
     padding: 2rem;
@@ -23,12 +24,12 @@ body {
     margin: 2rem 0;
 }
 
-.color-prin{
+.color-prin {
     background-color: #71D374;
     border: 0.3rem solid #1B682D;
 }
 
-.btn-jugar{
+.btn-jugar {
     padding: 0.5rem 3rem;
     margin: 2rem;
     border-radius: 1.5rem;
@@ -36,7 +37,8 @@ body {
     cursor: pointer;
     transition: 0.3s;
 }
-.btn-jugar:hover{
+
+.btn-jugar:hover {
     box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
     transform: scale(1.07);
 }
@@ -48,10 +50,12 @@ body {
     z-index: 10;
     position: relative;
 }
-#ImageTitle{
+
+#ImageTitle {
     width: 35%;
     height: 35%;
 }
+
 #board img {
     width: 118px;
     height: 118px;
@@ -92,7 +96,8 @@ body {
     justify-content: center;
     border-radius: 1.5rem;
 }
-.container.desenfocado > *:not(#modal) {
+
+.container.desenfocado>*:not(#modal) {
     filter: blur(4px);
     pointer-events: none;
     user-select: none;
@@ -108,6 +113,101 @@ body {
     text-align: center;
     max-width: 80%;
 }
+
 .container.desenfocado {
     background-color: white !important;
+}
+
+@media (max-width: 767px) {
+
+    /* reset global */
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-image: url('../resources/fondo.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* CONTENEDOR sin restricciones de altura, 100% ancho */
+    .container {
+        width: calc(100% - 2rem);
+        /* ancho = 100% menos 1rem a cada lado */
+        margin: 1rem auto;
+        /* 1rem arriba/abajo y auto centrado */
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* Vista previa de imagen: máximo 360px para mantener proporción */
+    #ImageTitle {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1rem;
+        margin: 0.3rem 0;
+    }
+
+    /* Tablero cuadrado, hasta 360px, con filas y columnas iguales */
+    #board {
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 1/1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 1fr;
+        margin: 0.5rem 0;
+        border: 4px solid #fdfd64;
+        background-color: #fdfd63;
+        box-sizing: border-box; 
+    }
+
+    /* 3) Piezas sin recorte */
+    #board img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* muestra entera la pieza */
+        object-position: center;
+        /* centrada en su celda */
+        background-color: #fdfd63;
+        /* relleno idéntico al fondo del tablero */
+        display: block;
+        border: none;
+    }
+
+    /* Botón y modal */
+    .btn-jugar {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+        margin: 0.5rem auto;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .modal-contenido {
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
 }

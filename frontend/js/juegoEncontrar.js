@@ -12,16 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let seguntaCarta = false;
 
     const items = [
-        { name: "ayudarse", image: "../resources/img/Ayudarse.jpg" },
-        { name: "democracia", image: "../resources/img/Democracia.jpg" },
-        { name: "equidad", image: "../resources/img/equidad.jpg" },
-        { name: "honestidad", image: "../resources/img/Honestidad.jpeg" },
-        { name: "igualdad", image: "../resources/img/igualdad.jpeg" },
-        { name: "solidaridad", image: "../resources/img/solidaridad.jpg" },
-        { name: "responsabilidad", image: "../resources/img/responsabilidad.jpg" },
-        { name: "preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
-        { name: "responsabilidadSocial", image: "../resources/img/ResponsabilidadSocial.png" },
-        { name: "transparencia", image: "../resources/img/Transparencia.jpg" },
+        { name: "Ayudarse", image: "../resources/img/Ayudarse.jpg" },
+        { name: "Democracia", image: "../resources/img/Democracia.jpg" },
+        { name: "Equidad", image: "../resources/img/equidad.jpg" },
+        { name: "Honestidad", image: "../resources/img/Honestidad.jpeg" },
+        { name: "Igualdad", image: "../resources/img/igualdad.jpeg" },
+        { name: "Solidaridad", image: "../resources/img/solidaridad.jpg" },
+        { name: "Responsabilidad", image: "../resources/img/responsabilidad.jpg" },
+        { name: "Preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
+        { name: "ResponsabilidadSocial", image: "../resources/img/ResponsabilidadSocial.png" },
+        { name: "Transparencia", image: "../resources/img/Transparencia.jpg" },
         // { name: "", image: "" },
     ];
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let valorEnSegundos = segundos < 10 ? `0${segundos}` : segundos;
         let valorEnMinutos = minutos < 10 ? `0${minutos}` : minutos;
-        tiempo.innerHTML = "<span>Tiempo: </span>" + valorEnMinutos + ":" + valorEnSegundos;
+        tiempo.innerHTML = "<span>Tiempo: </span> " + valorEnMinutos + ":" + valorEnSegundos;
 
     };
 
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${valoresDistribuidos[i].tipo === "imagen"
                     ? `<img src="${valoresDistribuidos[i].image}" class="image"/>`
                     : `<span class="palabra">${valoresDistribuidos[i].name === "responsabilidadSocial"
-                        ? "responsabilidad<br>social"
+                        ? "Responsabilidad<br>social"
                         : valoresDistribuidos[i].name}</span>`}
                     </div>
                 </div>

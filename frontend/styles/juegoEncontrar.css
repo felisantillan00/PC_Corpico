@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-html, body {
+html,
+body {
     min-height: 100%;
     height: auto;
     margin: 0;
@@ -10,7 +11,7 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed; 
+    background-attachment: fixed;
 }
 
 body {
@@ -118,6 +119,13 @@ body {
     padding: 10px;
 }
 
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
 button {
     border: none;
     border-radius: 10rem;
@@ -171,59 +179,90 @@ button {
 }
 
 @media (max-width: 767px) {
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: hidden; /* evito scroll vertical */
-  }
 
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* centro vertical y horizontal */
-    padding: 0;
-    margin: 0.2rem;
-  }
+    html,
+    body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
-  .wrapper {
-    width: 95vw;
-    max-width: 400px;
-    padding: 1rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 90vh; /* para que quepa vertical */
-  }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .stats-container {
-    font-size: 1rem;
-    justify-content: space-around;
-    margin-bottom: 0.5rem;
-  }
+    .wrapper {
+        width: 95vw;
+        max-width: 400px;
+        max-height: 95vh;
+        overflow-y: auto;
+        padding: 1rem;
+        margin: auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
 
-  .game-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.4em;
-    height: auto;
-  }
+    .stats-container {
+        font-size: 1rem;
+        justify-content: space-around;
+        margin-bottom: 0.5rem;
+    }
 
-  .card-container {
-    height: 6em;
-  }
+    .game-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4em;
+    }
 
-  .palabra {
-    font-size: 12px;
-    padding: 6px;
-  }
+    .card-container {
+        height: 7em;
+    }
 
-  button#stop {
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 1rem;
-    margin-top: auto;
-  }
+    .palabra {
+        font-size: 0.5rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        line-height: 1.2;
+        padding: 6px;
+        white-space: normal;
+        word-break: break-word;
+        /* 🔧 Permite corte cuando es necesario */
+        overflow-wrap: break-word;
+        /* 🔧 Igual que el de arriba, más compatible */
+        hyphens: auto;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .card-after {
+        background-color: #ffffff;
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .image {
+        object-fit: contain;
+        padding: 2px;
+    }
+
+    button#stop {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 1rem;
+        margin-top: auto;
+    }
 }
