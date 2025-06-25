@@ -49,6 +49,11 @@ function reiniciarJuego() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const bg = document.getElementById('bg-music');
+    bg.volume = 1;
+
+    // Intentamos autoplay; si falla, lo lanzamos al primer clic
+    bg.play();
     const contenedor = document.querySelector('.cartas-container');
     const indicadores = document.querySelector('.indicadores');
     const prevBtn = document.getElementById('prev');
@@ -99,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
             actualizarVista();
         }
     };
+
+
+
 
     // 7) Pinta puntaje inicial y carrusel
     const pts = parseInt(localStorage.getItem('puntajeJugador') || '0');
