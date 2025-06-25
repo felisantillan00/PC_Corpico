@@ -1,41 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 .container .texto{
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight: 700;
     letter-spacing: 0.05rem;
 }
 .ping {
     width: 80%;
-    padding: 0.3rem 2rem;
+    padding: 0.4rem 1rem;
     border-radius: 1.5rem;
-    font-size: 20px;
+    font-size: 25px;
+    margin-right: 2rem;
+    font-weight: bold;
     color: black;
-    border: 3px solid #16a34a;
     outline: none;
 }
 
 input::placeholder {
-    color: #6d6d6d;
+    color: #535353;
     font-size: 19px;
     font-weight: 500;
 }
 
 .boton {
-    background-color: #16a34a;
-    color: rgb(247, 247, 247);
-    padding: 0.1rem 1rem;
+    padding: 0.2rem 1rem;
     border-radius: 5rem;
     margin-left: 2rem;
     font-size: 30px;
     font-weight: bold;
-    letter-spacing: 0.1rem;
-    border: none;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: monospace;
 }
 
 .btn-level {
     width: 220px;
+    max-width: 300px;
+    padding: 0.8rem 1rem;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 2rem;
+    text-align: center;
 }
 .box-nickname{
     display: flex;
@@ -48,13 +51,6 @@ input:focus::placeholder {
     color: transparent;
 }
 
-.box-nickname {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-}
-
 .box-niveles {
     display: flex;
     justify-content: center;
@@ -65,7 +61,7 @@ input:focus::placeholder {
 
 .nombre-jugador {
     display: flex;
-    width: 70%;
+    width: 1100px;
     padding-left: 3rem;
     margin-top: -3rem;
     font-family: 'Play', sans-serif;
@@ -77,6 +73,17 @@ input:focus::placeholder {
 
 .box-niveles .boton {
     width: 15rem;
+}
+
+@media (max-width: 1200px) {
+    .nombre-jugador{
+        width: 1000px;
+    }
+}
+@media (max-width: 991px) {
+    .nombre-jugador{
+        width: 740px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -109,7 +116,7 @@ input:focus::placeholder {
 
     .nombre-jugador {
         font-size: 20px;
-        width: 90%;
+        width: 520px;
         padding-left: 1rem;
         padding-top: 1rem;
     }
