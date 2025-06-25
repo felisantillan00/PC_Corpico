@@ -120,6 +120,7 @@ body {
 
 @media (max-width: 767px) {
 
+
     /* reset global */
     html,
     body {
@@ -163,32 +164,30 @@ body {
         margin: 0.3rem 0;
     }
 
-    /* Tablero cuadrado, hasta 360px, con filas y columnas iguales */
     #board {
-        width: 100%;
-        max-width: 360px;
-        aspect-ratio: 1/1;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: 1fr;
-        margin: 0.5rem 0;
+        grid-template-rows: repeat(3, 1fr);
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 1 / 1;
+        gap: 0;
+        margin: 0 auto;
         border: 4px solid #fdfd64;
         background-color: #fdfd63;
-        box-sizing: border-box; 
+        box-sizing: border-box;
     }
 
-    /* 3) Piezas sin recorte */
+
     #board img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        /* muestra entera la pieza */
-        object-position: center;
-        /* centrada en su celda */
-        background-color: #fdfd63;
-        /* relleno idéntico al fondo del tablero */
+        object-fit: cover;
+        /* 🔥 recorta márgenes internos */
         display: block;
         border: none;
+        margin: 0;
+        padding: 0;
     }
 
     /* Botón y modal */
@@ -209,5 +208,14 @@ body {
     .modal-contenido {
         font-size: 1.1rem;
         padding: 1rem;
+    }
+
+    .pieza {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

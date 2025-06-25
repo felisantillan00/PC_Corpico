@@ -75,17 +75,6 @@ input:focus::placeholder {
     width: 15rem;
 }
 
-@media (max-width: 1200px) {
-    .nombre-jugador{
-        width: 1000px;
-    }
-}
-@media (max-width: 991px) {
-    .nombre-jugador{
-        width: 740px;
-    }
-}
-
 @media (max-width: 768px) {
     .box-nickname {
         margin-top: 4rem;
