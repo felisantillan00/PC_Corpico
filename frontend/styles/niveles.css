@@ -27,8 +27,7 @@ input::placeholder {
     border-radius: 5rem;
     margin-left: 2rem;
     font-size: 30px;
-    font-weight: bold;
-    font-family: monospace;
+    font-weight: 600;
 }
 
 .btn-level {
@@ -75,6 +74,16 @@ input:focus::placeholder {
     width: 15rem;
 }
 
+@media (max-width: 1200px) {
+    .nombre-jugador{
+        width: 1000px;
+    }
+}
+@media (max-width: 991px) {
+    .nombre-jugador{
+        width: 740px;
+    }
+}
 @media (max-width: 768px) {
     .box-nickname {
         margin-top: 4rem;
@@ -85,13 +94,14 @@ input:focus::placeholder {
         width: 65%;
         font-size: 22px;
         margin-right: 1rem;
-        margin-bottom: 0;
+        margin-bottom: 0rem;
     }
     .box-niveles{
         display: flex;
         justify-content: left;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 3rem;
     }
     .boton {
         margin-left: 0rem;
@@ -101,8 +111,7 @@ input:focus::placeholder {
     .nombre-jugador {
         font-size: 20px;
         width: 520px;
-        padding-left: 1rem;
-        padding-top: 1rem;
+        padding-left: 1.5rem;
     }
 }
 @media (max-width: 600px) {
