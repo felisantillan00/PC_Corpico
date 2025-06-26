@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Solidaridad", image: "../resources/img/solidaridad.jpg" },
         { name: "Responsabilidad", image: "../resources/img/responsabilidad.jpg" },
         { name: "Preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
-        { name: "ResponsabilidadSocial", image: "../resources/img/ResponsabilidadSocial.png" },
+        { name: "ResponsabilidadSocial", image: "../resources/img/Responsabilidad_Social.png" },
         { name: "Transparencia", image: "../resources/img/Transparencia.jpg" },
         // { name: "", image: "" },
     ];
@@ -92,9 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="card-after">
                     ${valoresDistribuidos[i].tipo === "imagen"
                     ? `<img src="${valoresDistribuidos[i].image}" class="image"/>`
-                    : `<span class="palabra">${valoresDistribuidos[i].name === "responsabilidadSocial"
-                        ? "Responsabilidad<br>social"
-                        : valoresDistribuidos[i].name}</span>`}
+
+                    : `${valoresDistribuidos[i].name === "ResponsabilidadSocial"
+                        ? `<div class="palabra">
+                                <div>Responsabilidad</div>
+                                <div>social</div>
+                            </div>`
+                        : `<span class="palabra">${valoresDistribuidos[i].name}</span>`
+                    }`
+
+
+                }    
                     </div>
                 </div>
                 `;
