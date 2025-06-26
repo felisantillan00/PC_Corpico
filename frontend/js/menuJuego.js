@@ -7,9 +7,23 @@ function revelarCarta(carta, url, texto) {
         localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
     }
 
+    function nombreArchivo(id) {
+        switch (id) {
+            case 'quiz': return 'Quizz.png';
+            case 'ahorcado': return 'Ahorcado.png';
+            case 'relacionar': return 'Memory_Game.png';
+            case 'puzzle': return 'Puzzle.png';
+            default: return 'default.png';
+        }
+    }
     // reversible visual  
     carta.classList.add('volteada');
-    carta.querySelector('.dorso').textContent = texto;
+    const portada = carta.querySelector('.portada');
+    portada.style.backgroundImage = `url('../resources/img/PortadaJuegos/${nombreArchivo(id)}')`;
+    const titulo = carta.querySelector('.titulo-portada');
+    if (titulo) titulo.textContent = texto;
+
+    portada.setAttribute("aria-label", texto); // opcional para accesibilidad
 
     setTimeout(() => location.href = url, 1000);
 }
