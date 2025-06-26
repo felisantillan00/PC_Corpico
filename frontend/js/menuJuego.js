@@ -11,12 +11,9 @@ function revelarCarta(carta, url, texto) {
     carta.classList.add('volteada');
     carta.querySelector('.dorso').textContent = texto;
 
-    // Aumenta 1 punto
-    let ptos = parseInt(localStorage.getItem('puntajeJugador') || '0') + 1;
-    localStorage.setItem('puntajeJugador', ptos);
-
     setTimeout(() => location.href = url, 1000);
 }
+
 function mostrarModal(idModal) {
     document.querySelector(".contenedor").classList.add("desenfocado");
     document.getElementById(idModal).classList.remove("oculto");
@@ -51,25 +48,47 @@ function reiniciarJuego() {
 document.addEventListener("DOMContentLoaded", () => {
     const bg = document.getElementById('bg-music');
     bg.volume = 1;
-
-    // Intentamos autoplay; si falla, lo lanzamos al primer clic
     bg.play();
+
     const contenedor = document.querySelector('.cartas-container');
     const indicadores = document.querySelector('.indicadores');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
 
-    // 1) Quitar cartas ya jugadas
     const jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
+
+    // Quitar cartas jugadas
     document.querySelectorAll('.carta').forEach(c => {
         if (jugados.includes(c.dataset.id)) c.remove();
     });
 
-    // 2) Array dinámico de cartas
     const cartas = [...contenedor.children];
+
+    // ⛔️ Si no quedan cartas, mostrar mensaje de felicitaciones y salir
+    if (cartas.length === 0) {
+        const contenedorPrincipal = document.querySelector('.contenedor');
+        const nombre = localStorage.getItem('nombreJugador') || "Jugador";
+        const puntaje = localStorage.getItem('puntajeJugador') || 0;
+
+        contenedorPrincipal.innerHTML = `
+            <p id="puntaje" style="font-size:1.4rem; margin-bottom: 2rem;">🎉 ¡Felicitaciones ${nombre}! 🎉<br><br>Completaste todos los juegos.<br><br>Puntaje final: <strong>${puntaje}</strong></p>
+            <div class="btn-contenedor">
+                <button id="reiniciar" class="btn-reiniciar">Reiniciar juego</button>
+            </div>
+        `;
+        document.getElementById('reiniciar').addEventListener('click', () => {
+            localStorage.setItem('puntajeJugador', 0);
+            localStorage.removeItem('minijuegosJugados');
+            window.location.href = './start/home.html';
+        });
+
+        return;
+    }
+
+    // Si quedan juegos, continúa con el carrusel
     let index = 0;
     contenedor.style.transform = 'translateX(0)';
-    // 3) Crear indicadores
+
     indicadores.innerHTML = '';
     cartas.forEach((_, i) => {
         const dot = document.createElement('span');
@@ -78,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const dots = indicadores.querySelectorAll('.dot');
 
-    // 4) Función para mover carrusel
     function actualizarVista() {
         if (!cartas.length) return;
         const primera = cartas[0];
@@ -91,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dots[index]?.classList.add('active');
     }
 
-    // 5) Flechas
     nextBtn.onclick = () => {
         if (index < cartas.length - 1) {
             index++;
@@ -105,11 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-
-
-
-    // 7) Pinta puntaje inicial y carrusel
+    // Mostrar nombre y puntaje
+    const nombre = localStorage.getItem('nombreJugador') || "Jugador";
     const pts = parseInt(localStorage.getItem('puntajeJugador') || '0');
-    document.getElementById('puntaje').textContent = `Puntaje actual: ${pts}`;
+    document.getElementById('puntaje').textContent = `Puntaje: ${pts}`;
+    const nombreEl = document.getElementById('nombreJugador');
+    if (nombreEl) nombreEl.textContent = nombre;
+
     actualizarVista();
 });

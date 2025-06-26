@@ -34,9 +34,13 @@ body {
 
 #puntaje {
   font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+#nombreJugador{
+  font-size: 1.6rem;
   margin-bottom: 1.5rem;
 }
-
 .carrusel-wrapper {
   position: relative;
   overflow: hidden;
@@ -46,6 +50,11 @@ body {
 .cartas-container {
   display: flex;
   transition: transform 0.4s ease;
+}
+#modal-final .modal-contenido {
+  background-color: #e0ffe5;
+  border: 2px solid #4caf50;
+  color: #1b5e20;
 }
 
 .carta {

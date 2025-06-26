@@ -1,10 +1,22 @@
-const palabras = [
-    "cooperativa", "solidaridad", "trabajo", "ayuda",
-    "autogestion", "igualdad", "participacion", "democracia",
-    "responsabilidad", "educacion", "sostenibilidad", "transparencia"
+const palabrasFacil = [
+    { palabra: "Ayudarse", pista: "Acción de colaborar entre personas" },
+    { palabra: "Democracia", pista: "Forma de gobierno donde todos pueden opinar" },
+    { palabra: "Equidad", pista: "Dar a cada uno lo que necesita para igualar oportunidades" },
+    { palabra: "Honestidad", pista: "Valor de decir siempre la verdad" },
+    { palabra: "Igualdad", pista: "Todos tenemos los mismos derechos" }
 ];
 
+const palabrasDificil = [
+    { palabra: "Preocupacion por los demas", pista: "Pensar en el bienestar de otras personas" },
+    { palabra: "Responsabilidad", pista: "Cumplir con lo que te corresponde" },
+    { palabra: "Responsabilidad social", pista: "Ayudar a la comunidad desde tu lugar" },
+    { palabra: "Solidaridad", pista: "Apoyar a alguien sin esperar nada a cambio" },
+    { palabra: "Transparencia", pista: "Actuar con claridad y sin esconder nada" }
+];
+
+let palabras = [];
 let palabra = "";
+let pista = "";
 let letrasUsadas = [];
 let errores = 0;
 let palabraActual = 1;
@@ -18,26 +30,56 @@ const erroresEl = document.getElementById("errors");
 const letrasUsadasEl = document.getElementById("used-letters");
 const partes = document.querySelectorAll(".part");
 const progresoEl = document.getElementById("progreso");
+const pistaEl = document.getElementById("pista");
 
 function startGame() {
-    if (palabraActual > totalPalabras) {
+    if (palabraActual === 1) {
+        palabras = obtenerPalabrasPorDificultad();
+    }
+
+    if (palabraActual > totalPalabras || palabras.length === 0) {
         finalizarJuego();
         return;
     }
 
-    palabra = palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
+    const palabraObj = palabras.splice(Math.floor(Math.random() * palabras.length), 1)[0];
+    palabra = palabraObj.palabra.toUpperCase();
+    pista = palabraObj.pista;
+
     letrasUsadas = [];
     errores = 0;
 
-    palabraContainer.innerHTML = palabra.replace(/./g, "_ ");
+    palabraContainer.innerHTML = "";
+    for (const letra of palabra) {
+        const span = document.createElement("span");
+        span.classList.add("letra");
+        if (letra === " ") {
+            span.innerHTML = "&nbsp;";  // para que el espacio sea detectado en CSS
+            span.classList.add("espacio"); // clase para CSS
+        } else {
+            span.textContent = "_";
+        }
+        palabraContainer.appendChild(span);
+    }
+    pistaEl.textContent = `Pista: ${pista}`;
     erroresEl.textContent = errores;
     letrasUsadasEl.textContent = "";
     partes.forEach(part => part.style.display = "none");
     generarTeclado();
     progresoEl.textContent = `Palabra ${palabraActual} / ${totalPalabras}`;
-    palabraContainer.innerHTML = palabra.replace(/./g, "_ ");
-
     fitWord();
+}
+
+function obtenerPalabrasPorDificultad() {
+    const nivel = localStorage.getItem("nivelSeleccionado");
+    switch (nivel) {
+        case "facil":
+            return [...palabrasFacil];
+        case "dificil":
+            return [...palabrasDificil];
+        default:
+            return [...palabrasFacil];
+    }
 }
 
 function finalizarJuego() {
@@ -58,7 +100,6 @@ function finalizarJuego() {
         window.location.href = 'menuJuego.html';
     }, 3000);
 }
-
 
 function generarTeclado() {
     teclado.innerHTML = "";
@@ -85,8 +126,15 @@ function manejarLetra(letra, btn) {
         btn.classList.add("wrong");
         erroresEl.textContent = errores;
         mostrarParte(errores);
-        if (errores == maxErrores) {
-            palabraContainer.textContent = palabra;
+        if (errores === maxErrores) {
+            palabraContainer.innerHTML = "";
+            for (const letra of palabra) {
+                const span = document.createElement("span");
+                span.classList.add("letra");
+                span.textContent = letra;
+                palabraContainer.appendChild(span);
+            }
+
             document.querySelector(".contenido-juego").classList.add("invisible");
             mostrarMensaje(`😵 ¡Perdiste esta palabra! Puntos: ${puntos}`, "error");
             setTimeout(() => {
@@ -94,24 +142,28 @@ function manejarLetra(letra, btn) {
                 avanzarRonda();
             }, 3000);
         }
-
     }
 
     btn.disabled = true;
 }
 
 function actualizarPalabra() {
-    let mostrada = "";
+    const spans = palabraContainer.querySelectorAll(".letra");
     let ganaste = true;
-    for (const letra of palabra) {
-        if (letrasUsadas.includes(letra)) {
-            mostrada += letra + " ";
+
+    for (let i = 0; i < palabra.length; i++) {
+        const letra = palabra[i];
+        if (letra === " ") {
+            spans[i].innerHTML = "&nbsp;";
+        } else if (letrasUsadas.includes(letra)) {
+            spans[i].textContent = letra;
         } else {
-            mostrada += "_ ";
+            spans[i].textContent = "_";
             ganaste = false;
         }
+
     }
-    palabraContainer.textContent = mostrada;
+
     if (ganaste) {
         puntos += 10;
         document.querySelector(".contenido-juego").classList.add("invisible");
@@ -122,9 +174,7 @@ function actualizarPalabra() {
         }, 3000);
     }
 
-    palabraContainer.textContent = mostrada;
     fitWord();
-
 }
 
 function mostrarParte(errorCount) {
@@ -141,18 +191,12 @@ function mostrarMensaje(texto, tipo) {
     mensajeTexto.textContent = texto;
     modal.className = `modal-puntos ${tipo}`;
     modal.style.display = "block";
-    overlay.style.display = "block"; // Mostrar fondo blanco
+    overlay.style.display = "block";
 
     setTimeout(() => {
         modal.style.display = "none";
-        overlay.style.display = "none"; // Ocultar fondo blanco
+        overlay.style.display = "none";
     }, 3000);
-}
-
-
-
-function desactivarTeclado() {
-    document.querySelectorAll(".keyboard button").forEach(btn => btn.disabled = true);
 }
 
 function avanzarRonda() {
@@ -161,27 +205,24 @@ function avanzarRonda() {
 }
 
 function fitWord() {
-  const el = document.getElementById("word");
-  const parentWidth = el.parentElement.clientWidth - 16;
+    const el = document.getElementById("word");
+    const parentWidth = el.parentElement.clientWidth - 16;
 
-  let fontSize = 100;
-  let letterSpacing = 20;
+    let fontSize = 50;
+    let letterSpacing = 20;
 
-  el.style.fontSize = fontSize + 'px';
-  el.style.letterSpacing = letterSpacing + 'px';
-
-  const isMobile = window.innerWidth <= 767;
-  const minFontSize = isMobile ? 16 : 40; // más pequeño en móviles
-
-  while (el.scrollWidth > parentWidth && fontSize > minFontSize) {
-    fontSize *= 0.95;
-    letterSpacing *= 0.95;
     el.style.fontSize = fontSize + 'px';
     el.style.letterSpacing = letterSpacing + 'px';
-  }
 
+    const isMobile = window.innerWidth <= 767;
+    const minFontSize = isMobile ? 16 : 40;
+
+    while (el.scrollWidth > parentWidth && fontSize > minFontSize) {
+        fontSize *= 0.95;
+        letterSpacing *= 0.95;
+        el.style.fontSize = fontSize + 'px';
+        el.style.letterSpacing = letterSpacing + 'px';
+    }
 }
 
-
-// Iniciar juego al cargar
 startGame();

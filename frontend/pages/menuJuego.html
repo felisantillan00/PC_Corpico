@@ -12,7 +12,9 @@
 <body>
   <audio id="bg-music" src="../resources/sounds/music_loop.mp3" loop></audio>
   <div class="contenedor">
-    <p id="puntaje">Puntaje actual: 0</p>
+    <p><span id="nombreJugador"></span></p>
+
+    <p id="puntaje"></p>
 
     <div class="carrusel-wrapper">
       <button id="prev" class="navegacion-btn"></button>
@@ -65,6 +67,12 @@
         <p>Juego reiniciado correctamente ✅</p>
       </div>
     </div>
+    <div id="modal-final" class="modal oculto">
+      <div class="modal-contenido">
+        <p id="textoFinal">🎉 ¡Felicitaciones!</p>
+      </div>
+    </div>
+
   </div>
 
   <script src="../js/menuJuego.js" defer></script>
