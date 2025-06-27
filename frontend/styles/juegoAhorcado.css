@@ -14,6 +14,12 @@ body {
     padding: 2rem 0;
 }
 
+.errores {
+    color: rgb(248, 1, 1);
+    margin: 0;
+    padding: 0;
+}
+
 .titulo {
     padding-bottom: 2rem;
 }
@@ -290,12 +296,54 @@ button {
         overflow-y: hidden;
     }
 
+    body {
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
     .container {
-        width: calc(100% - 4rem);
-        /* siempre 1rem de margen a cada lado */
+        width: 100%;
         max-width: 500px;
-        padding: 1.2rem;
-        margin-top: 1rem;
+        margin: 1rem auto;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        background: white;
+        box-shadow: 0 0 10px #c4c3c3;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .pista {
+        font-size: 1rem;
+        margin: 0 auto 1rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 0 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    .letras {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        box-sizing: border-box;
+    }
+
+
+    .letrasUsadas {
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90vw;
+        text-align: center;
+        margin: 0 auto;
     }
 
     /* 2) Título con espacio inferior uniforme */
@@ -371,29 +419,6 @@ button {
         font-size: 0.9rem;
     }
 
-    .letras {
-        margin: 0 1rem 1rem;
-        text-align: center;
-        padding: 0.3rem 0.5rem;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        height: auto;
-        width: 100%;
-    }
-
-
-    .letrasUsadas {
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 90vw;
-    }
-
     /* 8) Modales adaptados */
     .modal-puntos,
     .modal-final {
@@ -458,4 +483,5 @@ button {
         box-sizing: border-box;
         padding: 0 0.5rem;
     }
+    
 }
