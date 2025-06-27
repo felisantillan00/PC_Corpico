@@ -183,6 +183,27 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../pages/menuJuego.html";
     });
 
+    const mostrarAyudaDerecha = (valores) => {
+        const contenedor = document.getElementById("ayuda-derecha");
+        contenedor.innerHTML = "";
+
+        const crearItem = (item) => `
+        <div class="ayuda-item">
+            <img src="${item.image}" alt="${item.name}" />
+            <span>${item.name === "ResponsabilidadSocial"
+                ? "Responsabilidad<br>social"
+                : item.name}</span>
+        </div>
+    `;
+        contenedor.innerHTML += `<div class="contenedor-text">
+        <p class="text">Ayuda:</p>
+        </div>`;
+
+        valores.forEach(item => {
+            contenedor.innerHTML += crearItem(item);
+        });
+    };
+
 
     const iniciar = () => {
         resultado.innerText = "";
@@ -194,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         intervalo = setInterval(timeGenerator, 1000);
         moves.innerHTML = `<span>Movimientos:</span> ${cantMovimientos}`;
         let valoresDeLasCartas = generateRandom();
+        mostrarAyudaDerecha(valoresDeLasCartas);
         generarMatriz(valoresDeLasCartas);
     };
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reto Corpico</title>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="../styles/main.css" />
   <link rel="stylesheet" href="../styles/juegoEncontrar.css" />
 </head>
+
 <body>
   <!-- Juego visible desde el inicio -->
   <div class="wrapper">
@@ -17,11 +19,18 @@
       <div id="time"></div>
     </div>
     <span id="nombre">Selecciona la imagen con la palabra correspondiente: </span>
-    <div class="game-container"></div>
+
+    <div class="zona-juego-con-ayuda">
+      <div class="game-container"></div>
+      <div class="ayuda-columna" id="ayuda-derecha"></div>
+    </div>
+
+
     <div id="result"></div>
     <button id="stop">Terminar Juego</button>
   </div>
 
   <script src="../js/juegoEncontrar.js"></script>
 </body>
+
 </html>
