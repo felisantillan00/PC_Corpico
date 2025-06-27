@@ -9,18 +9,71 @@ let movimientosErroneos = 0;
 let puzzlesResueltos = 0;
 const maxErrores = 20;
 const maxPuzzles = 5;
-const rows = 3, columns = 3;
+let rows, columns, carpeta;
 let currTile = null, otherTile = null;
 let puntaje = 0;
+let styleEl; // para guardar la referencia del <style>
 
 function iniciarJuego() {
+  const dificultad = localStorage.getItem("nivelSeleccionado") || "facil";
+  if (dificultad === "facil") {
+    rows = 3;
+    columns = 3;
+    carpeta = "JuegoPuzzleFacil";
+  } else {
+    rows = 4;
+    columns = 4;
+    carpeta = "JuegoPuzzleDificil";
+  }
+
+  const board = document.getElementById("board");
+  const boardSize = dificultad === "facil" ? 360 : 480;
+  const piezaSize = boardSize / rows;
+
+  board.style.width = `${boardSize}px`;
+
+  if (styleEl) styleEl.remove();
+  styleEl = document.createElement("style");
+  styleEl.textContent = `
+  #board {
+    display: grid;
+    grid-template-columns: repeat(${columns}, 1fr);
+    gap: 5px;
+    background-color: #fdfd63;
+    padding: 5px;
+    border: 5px solid rgb(253, 253, 100);
+    box-sizing: border-box;
+  }
+
+  .pieza {
+    aspect-ratio: 1 / 1; /* Mantiene celdas cuadradas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  #board img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Rellena completamente la celda */
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+`;
+  document.head.appendChild(styleEl);
+
+
   const temasJugados = JSON.parse(localStorage.getItem("temasPuzzleJugados") || "[]");
   const temasDisponibles = temas.filter(t => !temasJugados.includes(t));
 
   if (temasDisponibles.length === 0) {
-    // Todos los temas ya fueron jugados, reiniciamos la lista
     localStorage.removeItem("temasPuzzleJugados");
-    return iniciarJuego(); // volver a empezar desde cero
+    return iniciarJuego(); // reiniciar lista
   }
 
   temaActual = temasDisponibles[Math.floor(Math.random() * temasDisponibles.length)];
@@ -31,24 +84,21 @@ function iniciarJuego() {
   movimientosErroneos = 0;
   document.getElementById("movimientosErrados").innerText = movimientosErroneos;
   document.getElementById("puntaje").innerText = puntaje;
-  document.getElementById("board").innerHTML = "";
+  board.innerHTML = "";
   document.getElementById("ImageTitle").src =
-    `../resources/img/JuegoPuzzle/${temaActual}/0.jpg`;
+    `../resources/img/${carpeta}/${temaActual}/0.jpg`;
 
-  const piezas = mezclarArray(["1", "2", "3", "4", "5", "6", "7", "8", "9"]);
-  const board = document.getElementById("board");
+  const totalPiezas = rows * columns;
+  const piezas = mezclarArray(Array.from({ length: totalPiezas }, (_, i) => `${i + 1}`));
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       const valor = piezas.shift();
-      // Creo el wrapper
       const cont = document.createElement("div");
       cont.classList.add("pieza");
-      cont.id = `${r}-${c}`;                    // importante para ordenar luego
-      // Creo la imagen
+      cont.id = `${r}-${c}`;
       const img = document.createElement("img");
-      img.src = `../resources/img/JuegoPuzzle/${temaActual}/${valor}.jpg`;
-      // Anido y escucho clicks sobre el wrapper
+      img.src = `../resources/img/${carpeta}/${temaActual}/${valor}.jpg`;
       cont.append(img);
       cont.addEventListener("click", manejarClick);
       board.append(cont);
@@ -57,24 +107,22 @@ function iniciarJuego() {
 }
 
 function manejarClick() {
-  // this === <div class="pieza" id="r-c">
   if (!currTile) {
     currTile = this;
-    currTile.classList.add("seleccionada");
+    currTile.querySelector("img").classList.add("seleccionada");
     return;
   }
   if (this === currTile) {
-    currTile.classList.remove("seleccionada");
+    currTile.querySelector("img").classList.remove("seleccionada");
     currTile = null;
     return;
   }
   otherTile = this;
-  // Swapeo los src de las imágenes hijas
   const imgA = currTile.querySelector("img");
   const imgB = otherTile.querySelector("img");
   [imgA.src, imgB.src] = [imgB.src, imgA.src];
 
-  currTile.classList.remove("seleccionada");
+  currTile.querySelector("img").classList.remove("seleccionada");
   currTile = otherTile = null;
 
   if (!checkGanado()) {
@@ -83,7 +131,12 @@ function manejarClick() {
     if (movimientosErroneos >= maxErrores) {
       mostrarModal(
         "❌ Alcanzaste el máximo de errores. Reiniciando juego…",
-        () => { puzzlesResueltos = puntaje = 0; iniciarJuego(); }
+        () => {
+          puzzlesResueltos = 0;
+          puntaje = 0;
+          document.getElementById("ronda").innerText = puzzlesResueltos + 1;
+          iniciarJuego();
+        }
       );
     }
   }
