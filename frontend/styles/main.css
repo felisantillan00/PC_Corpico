@@ -145,19 +145,68 @@ body {
     }
 }
 
+/* Contenedor centrado y con algo de espacio */
+.container-play {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+/* Botón */
 .btn-success {
-    background-color: #023604;
-    border: 2px solid #1B682D;
-    font-weight: bold;
-    font-size: 18px;
+    background-color: #0303033f;  /* Verde oscuro más elegante */
+    color: #000; /* Texto negro para contraste */
+    width: 470px;
+    height: 50px;
+    border: 3px solid #00000042; /* Verde claro para bordes */
+    border-radius: 60px;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(27, 104, 45, 0.3); /* sombra suave */
+    cursor: pointer;
+    display: flex;
+    align-items: center;     
+    justify-content: flex-start; /* texto + icono alineados a la izquierda */
+    gap: 10px;                
+    padding-left: 30px; /* espacio para el contenido */
 }
 
-.container-play{
-    margin-top: 10px;
-    /* padding-top: 100px; */
-}
-
+/* Hover más vibrante con sombra y ligero cambio */
 .btn-success:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color: #2ca02c; /* Verde más brillante */
+    color: #fff;
+    border-color: #4dd964;
+    box-shadow: 0 6px 15px rgba(44, 160, 44, 0.7);
+    transform: scale(1.1);
+}
+
+/* Media Queries */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .btn-success {
+        width: 90%; /* ancho casi completo */
+        font-size: 18px;
+        height: 45px;
+        padding-left: 20px;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .btn-success {
+        width: 100%; /* ancho completo */
+        font-size: 16px;
+        height: 40px;
+        padding-left: 15px;
+        gap: 8px;
+    }
+
+    .container-play {
+        padding-top: 5px;
+        margin-top: 20px;
+    }
 }
