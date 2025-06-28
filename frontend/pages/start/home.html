@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="../../resources/corpico.png">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <title>Reto Corpico</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../../resources/corpico.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <title>Reto Corpico</title>
 </head>
 <body>
-    <div class="container">
-        <img src="../../resources/Corpico_logo_bueno.png" alt="Reto Corpico" class="logo">
+    <div class="container text-center">
+        <!-- Botón para abrir el modal -->
+        <img src="../../resources/Corpico_logo_bueno.png" alt="Reto Corpico" class="logo"/>
         <p>¡Aprende sobre cooperativismo mientras te diviertes!</p>
-        <a href="../start/nickname.html"><button class="btn-jugar color-prin">¡Empezar a Jugar!</button></a>
+        <a href="../start/nickname.html">
+            <button class="btn-jugar color-prin">¡Empezar a Jugar!</button>
+        </a>
     </div>
+    <div class="container-play">
+        <button tybtnPlaype="button" class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#modalVideo">
+            ▶ Ver video sobre el cooperativismo
+        </button>
+    </div>
+  <!-- Modal de video -->
+    <div class="modal fade" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalVideoLabel"> Video sobre el cooperativismo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                <video class="w-100" controls>
+                    <source src="../../resources/video/videoCooperativismo.mp4" type="video/mp4"/>
+                    Tu navegador no soporta el video.
+                </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script>
+        const modalVideo = document.getElementById('modalVideo');
+        modalVideo.addEventListener('hidden.bs.modal', () => {
+        const video = modalVideo.querySelector('video');
+        video.pause();
+        video.currentTime = 0;
+        });
         localStorage.clear();
     </script>
 </body>

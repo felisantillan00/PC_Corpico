@@ -145,3 +145,19 @@ body {
     }
 }
 
+.btn-success {
+    background-color: #023604;
+    border: 2px solid #1B682D;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.container-play{
+    margin-top: 10px;
+    /* padding-top: 100px; */
+}
+
+.btn-success:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
