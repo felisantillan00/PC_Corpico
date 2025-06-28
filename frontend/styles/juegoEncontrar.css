@@ -2,11 +2,12 @@
 
 html,
 body {
-    min-height: 100%;
-    height: auto;
     margin: 0;
     padding: 0;
-    font-family: 'Play', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
     background-image: url('../resources/fondo.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -22,6 +23,7 @@ body {
     padding: 2rem 1rem;
     box-sizing: border-box;
 }
+
 .wrapper {
     background-color: #ffffff;
     border-radius: 0.6em;
@@ -106,17 +108,24 @@ body {
 }
 
 .palabra {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+    /* ajusta entre 0.8 y 1.1rem */
+    padding: 0.3rem;
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.1;
+    white-space: normal;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    text-align: center;
-    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
 }
+
 
 .image {
     width: 100%;
@@ -213,103 +222,183 @@ button {
     font-size: 0.95rem;
     font-weight: 600;
 }
-.contenedor-text{
+
+.contenedor-text {
     margin: 0 0 -1rem 0;
 }
 
-.text{
+.text {
     font-size: 1.5rem;
     text-decoration: underline;
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
+.contenedor-ayuda {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
 @media (max-width: 767px) {
 
     html,
     body {
-        height: 100vh;
+        width: 100%;
+        min-height: 100vh;
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .wrapper {
-        width: 95vw;
-        max-width: 400px;
-        max-height: 95vh;
-        overflow-y: auto;
-        padding: 1rem;
-        margin: auto;
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
         box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
 
-    .stats-container {
-        font-size: 1rem;
-        justify-content: space-around;
-        margin-bottom: 0.5rem;
-    }
-
-    .game-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.4em;
-    }
 
     .card-container {
-        height: 7em;
+        height: auto;
+        aspect-ratio: 1 / 1.1;
+        /* forma vertical pero no excesiva */
+        width: 100%;
     }
 
     .palabra {
-        font-size: 0.5rem;
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-        line-height: 1.2;
-        padding: 6px;
-        white-space: normal;
+        font-size: clamp(0.7rem, 1.8vw, 1rem);
+        line-height: 1.1;
         word-break: break-word;
-        /* 🔧 Permite corte cuando es necesario */
         overflow-wrap: break-word;
-        /* 🔧 Igual que el de arriba, más compatible */
         hyphens: auto;
-        width: 100%;
-        height: 100%;
+        white-space: normal;
+        padding: 0.3rem;
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100%;
+        width: 100%;
         box-sizing: border-box;
+        flex-direction: column;
     }
+
 
     .card-after {
-        background-color: #ffffff;
-        transform: rotateY(180deg);
+        padding: 0.25rem;
+        box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 4px;
-        box-sizing: border-box;
         overflow: hidden;
-    }
-
-    .image {
-        object-fit: contain;
-        padding: 2px;
+        text-align: center;
     }
 
     button#stop {
         width: 100%;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1rem;
-        margin-top: auto;
+        margin: 1.5rem 0 1rem 0;
+        background-color: black;
+        color: white;
+        border-radius: 0.8rem;
+        border: none;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+    }
+
+    .wrapper {
+        width: 94vw;
+        max-width: 500px;
+        margin: 1rem auto;
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
+        background-color: white;
+        border-radius: 1rem;
+    }
+
+    .zona-juego-con-ayuda {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .ayuda-columna {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .ayuda-item span {
+        font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+        text-align: center;
+        line-height: 1.2;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .ayuda-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #f9f9f9;
+        border: 2px solid #000;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        /* 💥 clave para alinear imagen a la izquierda */
+    }
+
+    .game-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+        width: 100%;
+    }
+
+    .ayuda-columna {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .ayuda-item {
+        width: 45%;
+        font-size: 0.85rem;
+        text-align: center;
     }
 }

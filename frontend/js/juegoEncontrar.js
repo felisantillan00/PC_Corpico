@@ -82,8 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < size * size; i++) {
 
             if (i === 8) {
-                contenedorJuego.innerHTML += `
-                <div class="separador"></div>`
+                contenedorJuego.innerHTML += `<div class="separador" data-separador></div>`;
             }
             const mitad = i < 8 ? "arriba" : "abajo";
             contenedorJuego.innerHTML += `
@@ -185,23 +184,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const mostrarAyudaDerecha = (valores) => {
         const contenedor = document.getElementById("ayuda-derecha");
-        contenedor.innerHTML = "";
-
-        const crearItem = (item) => `
-        <div class="ayuda-item">
+        contenedor.innerHTML = `
+    <div class="contenedor-ayuda">
+      <p class="text">Ayuda:</p>
+      <div class="ayuda-columna">
+        ${valores.map(item => `
+          <div class="ayuda-item">
             <img src="${item.image}" alt="${item.name}" />
-            <span>${item.name === "ResponsabilidadSocial"
-                ? "Responsabilidad<br>social"
-                : item.name}</span>
-        </div>
-    `;
-        contenedor.innerHTML += `<div class="contenedor-text">
-        <p class="text">Ayuda:</p>
-        </div>`;
-
-        valores.forEach(item => {
-            contenedor.innerHTML += crearItem(item);
-        });
+            <span>${item.name === "ResponsabilidadSocial" ? "Responsabilidad<br>social" : item.name}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
     };
 
 
