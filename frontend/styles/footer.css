@@ -15,33 +15,34 @@
     padding: 0 1rem;
 }
 
+/* Por defecto en pantallas grandes: en una sola fila */
 .footer-names {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
     list-style: none;
     padding: 0;
     margin: 0.5rem 0 1rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
 }
 
 .footer-names li {
-    font-weight: 500;
     background-color: #e9ecef;
     padding: 6px 12px;
     border-radius: 20px;
+    font-weight: 500;
     font-size: 15px;
+    text-align: center;
+    /* width: 100%; Ocupar todo el ancho de la celda de grilla */
+    /* max-width: 200px; Opcional, para no hacerlo exagerado */
+    min-width: 150px; /* Para que todos tengan ancho similar */
+
 }
 
-.footer-small {
-    font-size: 14px;
-    color: #777;
-}
-
+/* Responsive: 2 columnas en pantallas pequeñas */
 @media (max-width: 600px) {
     .footer-names {
-        flex-direction: column;
-        gap: 6px;
+        grid-template-columns: repeat(2, 1fr); /* cambia a 2 columnas */
     }
 
     .footer-names li {
@@ -51,11 +52,10 @@
     .footer-small {
         font-size: 13px;
     }
-    .footer-names li {
-        font-weight: 500;
-        background-color: #e9ecef;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 15px;
-    }
+}
+
+@media (min-width: 601px) {
+  .footer-names {
+      grid-template-columns: repeat(2, 1fr); /* 3 columnas en pantallas grandes */
+  }
 }
