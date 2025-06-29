@@ -1,31 +1,15 @@
 function revelarCarta(carta, url, texto) {
-    if (carta.classList.contains('volteada')) return;
-    const id = carta.dataset.id;
-    let jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
-    if (!jugados.includes(id)) {
-        jugados.push(id);
-        localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
-    }
+  const id = carta.dataset.id;
 
-    function nombreArchivo(id) {
-        switch (id) {
-            case 'quiz': return 'Quizz.png';
-            case 'ahorcado': return 'Ahorcado.png';
-            case 'relacionar': return 'Memory_Game.png';
-            case 'puzzle': return 'Puzzle.png';
-            default: return 'default.png';
-        }
-    }
-    // reversible visual  
-    carta.classList.add('volteada');
-    const portada = carta.querySelector('.portada');
-    portada.style.backgroundImage = `url('../resources/img/PortadaJuegos/${nombreArchivo(id)}')`;
-    const titulo = carta.querySelector('.titulo-portada');
-    if (titulo) titulo.textContent = texto;
+  let jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
+  if (!jugados.includes(id)) {
+    jugados.push(id);
+    localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
+  }
 
-    portada.setAttribute("aria-label", texto); // opcional para accesibilidad
+  // Ya no modificamos ni portada ni texto: asumimos que están predefinidos
 
-    setTimeout(() => location.href = url, 1000);
+  setTimeout(() => location.href = url, 300); // podés ajustar el delay si querés dar tiempo al efecto hover
 }
 
 function mostrarModal(idModal) {
@@ -115,10 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cartas.length) return;
         const primera = cartas[0];
         const style = getComputedStyle(primera);
-        const total = primera.offsetWidth
-            + parseFloat(style.marginLeft)
-            + parseFloat(style.marginRight);
-        contenedor.style.transform = `translateX(-${index * total}px)`;
+
+        const isMobile = window.innerWidth < 768;
+
+        const total = isMobile
+            ? primera.offsetHeight + parseFloat(style.marginTop || 0) + parseFloat(style.marginBottom || 0)
+            : primera.offsetWidth + parseFloat(style.marginLeft || 0) + parseFloat(style.marginRight || 0);
+
+        contenedor.style.transform = isMobile
+            ? `translateY(-${index * total}px)`
+            : `translateX(-${index * total}px)`;
+
         dots.forEach(d => d.classList.remove('active'));
         dots[index]?.classList.add('active');
     }
@@ -144,4 +135,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nombreEl) nombreEl.textContent = nombre;
 
     actualizarVista();
+    setInterval(() => {
+        if (index < cartas.length - 1) {
+            index++;
+        } else {
+            index = 0;
+        }
+        actualizarVista();
+    }, 2000); // Cambia cada 5 segundos
+    cartas.forEach(carta => {
+        const id = carta.dataset.id;
+
+        const nombreArchivo = (id) => {
+            switch (id) {
+                case 'quiz': return 'Quizz.png';
+                case 'ahorcado': return 'Ahorcado.png';
+                case 'relacionar': return 'Memory_Game.png';
+                case 'puzzle': return 'Puzzle.png';
+                default: return 'default.png';
+            }
+        };
+
+        const frente = carta.querySelector('.frente');
+        frente.style.backgroundImage = `url('../resources/img/PortadaJuegos/${nombreArchivo(id)}')`;
+    });
 });

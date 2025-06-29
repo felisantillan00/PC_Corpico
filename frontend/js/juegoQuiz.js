@@ -147,6 +147,11 @@ function obtenerPreguntasPorDificultad() {
     }
 }
 
+function actualizarBarraProgreso() {
+    const progreso = ((posicionActual) / preguntas.length) * 100;
+    document.getElementById("barraProgreso").style.width = `${progreso}%`;
+}
+
 function showPregunta() {
     resetEstado();
     let preguntaActual = preguntas[posicionActual];
@@ -164,7 +169,10 @@ function showPregunta() {
         }
         button.addEventListener("click", seleccionRespuesta);
     });
+
+    actualizarBarraProgreso(); // 💥 actualiza el avance
 }
+
 
 function resetEstado() {
     siguienteButton.style.visibility = "hidden";
@@ -177,7 +185,7 @@ function seleccionRespuesta(e) {
     const esCorrecto = btnSeleccionado.dataset.correcta === "true";
 
     if (esCorrecto) {
-        sonidoCorrecto.currentTime = 0;  
+        sonidoCorrecto.currentTime = 0;
         sonidoCorrecto.play();
         btnSeleccionado.classList.add("correcto");
         puntos += 10;

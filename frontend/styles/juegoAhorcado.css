@@ -293,12 +293,19 @@ button {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
-        overflow-y: hidden;
+        min-height: 100%;
+        height: auto;
     }
 
     body {
+        background-image: url('../resources/fondo.png');
+        background-size: cover;
+        background-repeat: no-repeat;
         padding: 1rem;
         box-sizing: border-box;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
     .container {
@@ -483,5 +490,5 @@ button {
         box-sizing: border-box;
         padding: 0 0.5rem;
     }
-    
+
 }
