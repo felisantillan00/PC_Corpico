@@ -1,15 +1,15 @@
 function revelarCarta(carta, url, texto) {
-  const id = carta.dataset.id;
+    const id = carta.dataset.id;
 
-  let jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
-  if (!jugados.includes(id)) {
-    jugados.push(id);
-    localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
-  }
+    let jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
+    if (!jugados.includes(id)) {
+        jugados.push(id);
+        localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
+    }
 
-  // Ya no modificamos ni portada ni texto: asumimos que están predefinidos
+    // Ya no modificamos ni portada ni texto: asumimos que están predefinidos
 
-  setTimeout(() => location.href = url, 300); // podés ajustar el delay si querés dar tiempo al efecto hover
+    setTimeout(() => location.href = url, 300); // podés ajustar el delay si querés dar tiempo al efecto hover
 }
 
 function mostrarModal(idModal) {
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const contenedorPrincipal = document.querySelector('.contenedor');
         const nombre = localStorage.getItem('nombreJugador') || "Jugador";
         const puntaje = localStorage.getItem('puntajeJugador') || 0;
-
+        iniciarFuegosArtificiales(8000); // Iniciar fuegos artificiales por 10 segundos
         contenedorPrincipal.innerHTML = `
             <p id="puntaje" style="font-size:1.4rem; margin-bottom: 2rem;">🎉 ¡Felicitaciones ${nombre}! 🎉<br><br>Completaste todos los juegos.<br><br>Puntaje final: <strong>${puntaje}</strong></p>
             <div class="btn-contenedor">
@@ -94,6 +94,78 @@ document.addEventListener("DOMContentLoaded", () => {
         indicadores.appendChild(dot);
     });
     const dots = indicadores.querySelectorAll('.dot');
+
+
+    function iniciarFuegosArtificiales(duracion = 6000) {
+        const canvas = document.getElementById("canvas-fuegos");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particulas = [];
+
+        function crearExplosión(x, y) {
+            const colores = ['#FF0000', '#00FFFF', '#00FF00', '#FFFF00', '#FF00FF', '#FFA500', '#FF69B4', '#00FF9F'];
+
+            const color = colores[Math.floor(Math.random() * colores.length)];
+
+            for (let i = 0; i < 50; i++) {
+                const angulo = Math.random() * 2 * Math.PI;
+                const velocidad = Math.random() * 5 + 2;
+                particulas.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angulo) * velocidad,
+                    vy: Math.sin(angulo) * velocidad,
+                    alpha: 1,
+                    color: color,
+                });
+            }
+        }
+
+        function animar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particulas.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.05; // gravedad
+                p.alpha -= 0.01;
+
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2.5, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+
+            // limpiar las partículas apagadas
+            for (let i = particulas.length - 1; i >= 0; i--) {
+                if (particulas[i].alpha <= 0) {
+                    particulas.splice(i, 1);
+                }
+            }
+
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(animar);
+        }
+
+        // Lanzar explosiones en lugares aleatorios
+        const intervalo = setInterval(() => {
+            const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
+            const y = Math.random() * canvas.height * 0.4 + canvas.height * 0.1;
+            crearExplosión(x, y);
+        }, 500);
+
+        animar();
+
+        setTimeout(() => {
+            clearInterval(intervalo);
+        }, duracion);
+    }
+
+
 
     function actualizarVista() {
         if (!cartas.length) return;
@@ -135,14 +207,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nombreEl) nombreEl.textContent = nombre;
 
     actualizarVista();
-    setInterval(() => {
-        if (index < cartas.length - 1) {
-            index++;
-        } else {
-            index = 0;
-        }
-        actualizarVista();
-    }, 2000); // Cambia cada 5 segundos
+    if (window.innerWidth >= 768) {
+        setInterval(() => {
+            if (index < cartas.length - 1) {
+                index++;
+            } else {
+                index = 0;
+            }
+            actualizarVista();
+        }, 3000); // 5 segundos
+    }
     cartas.forEach(carta => {
         const id = carta.dataset.id;
 
@@ -157,6 +231,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const frente = carta.querySelector('.frente');
-        frente.style.backgroundImage = `url('../resources/img/PortadaJuegos/${nombreArchivo(id)}')`;
+        cartas.forEach(carta => {
+            const id = carta.dataset.id;
+            const frente = carta.querySelector('.frente');
+
+            const nombreArchivo = (id, esMovil) => {
+                let base;
+                switch (id) {
+                    case 'quiz': base = 'Quizz'; break;
+                    case 'ahorcado': base = 'Ahorcado'; break;
+                    case 'relacionar': base = 'Memory_Game'; break;
+                    case 'puzzle': base = 'Puzzle'; break;
+                    default: base = 'default'; break;
+                }
+                return esMovil ? `${base}_movile.png` : `${base}.png`;
+            };
+
+            const esMovil = window.innerWidth < 768;
+            frente.style.backgroundImage = `url('../resources/img/PortadaJuegos/${nombreArchivo(id, esMovil)}')`;
+        });
+
     });
 });
