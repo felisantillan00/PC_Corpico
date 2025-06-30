@@ -1,6 +1,6 @@
 const temas = [
-  "Ayudarse", "Democracia", "Equidad", "Honestidad", "Igualdad",
-  "PreocupacionXlosDemas", "Responsabilidad", "ResponsabilidadSocial",
+  "Ayudarse", "Democracia", "Equidad", "Honestidad", "Preocupacion",
+  "Responsabilidad", "ResponsabilidadSocial",
   "Solidaridad", "Transparencia"
 ];
 
@@ -86,7 +86,7 @@ function iniciarJuego() {
   document.getElementById("puntaje").innerText = puntaje;
   board.innerHTML = "";
   document.getElementById("ImageTitle").src =
-    `../resources/img/${carpeta}/${temaActual}/0.jpg`;
+    `../resources/img/${carpeta}/${temaActual}/0.png`;
 
   const totalPiezas = rows * columns;
   const piezas = mezclarArray(Array.from({ length: totalPiezas }, (_, i) => `${i + 1}`));
@@ -98,7 +98,7 @@ function iniciarJuego() {
       cont.classList.add("pieza");
       cont.id = `${r}-${c}`;
       const img = document.createElement("img");
-      img.src = `../resources/img/${carpeta}/${temaActual}/${valor}.jpg`;
+      img.src = `../resources/img/${carpeta}/${temaActual}/${valor}.png`;
       cont.append(img);
       cont.addEventListener("click", manejarClick);
       board.append(cont);
@@ -151,7 +151,7 @@ function checkGanado() {
   });
   return piezas.every((pieza, i) => {
     const img = pieza.querySelector("img");
-    const match = img.src.match(/(\d+)\.jpg$/);
+    const match = img.src.match(/(\d+)\.png$/);
     return match && match[1] === `${i + 1}`;
   });
 }

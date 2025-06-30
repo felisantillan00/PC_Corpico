@@ -13,6 +13,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    font-family: 'Play', sans-serif;
 }
 
 body {
@@ -55,6 +56,7 @@ body {
     width: 100%;
     display: grid;
     gap: 0.6em;
+    flex: 1;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
 }
@@ -188,16 +190,15 @@ button {
 
 .zona-juego-con-ayuda {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 10rem;
+    gap: 2rem;
 }
 
 .ayuda-columna {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    /* margin-top: 1rem; */
 }
 
 .ayuda-item {
@@ -231,7 +232,13 @@ button {
     font-size: 1.5rem;
     text-decoration: underline;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+#ayuda-derecha {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .contenedor-ayuda {
@@ -239,6 +246,8 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .text {

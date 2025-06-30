@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const dificultad = localStorage.getItem("nivelSeleccionado") || "facil"; // por defecto "facil"
+
     const moves = document.getElementById("moves-count");
     const tiempo = document.getElementById("time");
     const btnDetener = document.getElementById("stop");
@@ -12,16 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let seguntaCarta = false;
 
     const items = [
-        { name: "Ayudarse", image: "../resources/img/Ayudarse.jpg" },
-        { name: "Democracia", image: "../resources/img/Democracia.jpg" },
-        { name: "Equidad", image: "../resources/img/equidad.jpg" },
-        { name: "Honestidad", image: "../resources/img/Honestidad.jpeg" },
-        { name: "Igualdad", image: "../resources/img/igualdad.jpeg" },
-        { name: "Solidaridad", image: "../resources/img/solidaridad.jpg" },
-        { name: "Responsabilidad", image: "../resources/img/responsabilidad.jpg" },
-        { name: "Preocupacion", image: "../resources/img/preocupacionXlosDemas.jpg" },
-        { name: "ResponsabilidadSocial", image: "../resources/img/Responsabilidad_Social.png" },
-        { name: "Transparencia", image: "../resources/img/Transparencia.jpg" },
+        { name: "Ayudarse", image: "../resources/img/Ayudarse.png" },
+        { name: "Democracia", image: "../resources/img/Democracia.png" },
+        { name: "Equidad", image: "../resources/img/Equidad.png" },
+        { name: "Honestidad", image: "../resources/img/Honestidad.png" },
+        { name: "Preocupacion", image: "../resources/img/Preocupacion.png" },
+        { name: "Solidaridad", image: "../resources/img/Solidaridad.png" },
+        { name: "Responsabilidad", image: "../resources/img/Responsabilidad.png" },
+        { name: "ResponsabilidadSocial", image: "../resources/img/ResponsabilidadSocial.png" },
+        { name: "Transparencia", image: "../resources/img/Transparencia.png" },
         // { name: "", image: "" },
     ];
 
@@ -139,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                             <h4>Movimientos: ${cantMovimientos}</h4>
                                             <h4>Tiempo: ${minutos < 10 ? "0" + minutos : minutos}:${segundos < 10 ? "0" + segundos : segundos}</h4>
                                         `;
+                                    document.querySelector(".zona-juego-con-ayuda").style.display = "none";
+                                    resultado.style.display = "block";
                                     contenedorJuego.style.display = "none";
                                     moves.style.display = "none";
                                     tiempo.style.display = "none";
@@ -209,10 +212,23 @@ document.addEventListener("DOMContentLoaded", () => {
         victorias = 0;
         intervalo = setInterval(timeGenerator, 1000);
         moves.innerHTML = `<span>Movimientos:</span> ${cantMovimientos}`;
-        let valoresDeLasCartas = generateRandom();
-        mostrarAyudaDerecha(valoresDeLasCartas);
+
+        const valoresDeLasCartas = generateRandom();
+
+        // Mostrar u ocultar ayuda
+        const ayudaDerecha = document.getElementById("ayuda-derecha");
+        if (dificultad === "dificil") {
+            ayudaDerecha.style.display = "none";
+            contenedorJuego.parentElement.style.justifyContent = "center";
+            contenedorJuego.style.width = "100%";
+        } else {
+            ayudaDerecha.style.display = "flex";
+            mostrarAyudaDerecha(valoresDeLasCartas);
+        }
+
         generarMatriz(valoresDeLasCartas);
     };
+
 
     iniciar();
 });
