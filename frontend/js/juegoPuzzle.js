@@ -129,16 +129,25 @@ function manejarClick() {
     movimientosErroneos++;
     document.getElementById("movimientosErrados").innerText = movimientosErroneos;
     if (movimientosErroneos >= maxErrores) {
-      mostrarModal(
-        "❌ Alcanzaste el máximo de errores. Reiniciando juego…",
-        () => {
-          puzzlesResueltos = 0;
-          puntaje = 0;
-          document.getElementById("ronda").innerText = puzzlesResueltos + 1;
-          iniciarJuego();
-        }
-      );
+      puzzlesResueltos++;
+      if (puzzlesResueltos === maxPuzzles) {
+        mostrarModal(
+          `😞 Perdiste esta ronda. Completaste ${puzzlesResueltos}/${maxPuzzles}. Fin del juego.`,
+          () => {
+            let total = parseInt(localStorage.getItem("puntajeJugador")) || 0;
+            localStorage.setItem("puntajeJugador", total + puntaje);
+            localStorage.removeItem("temasPuzzleJugados");
+            window.location.href = "menuJuego.html";
+          }
+        );
+      } else {
+        mostrarModal(
+          `❌ Perdiste esta ronda. Siguiente oportunidad… Puzzle ${puzzlesResueltos}/${maxPuzzles} `,
+          iniciarJuego
+        );
+      }
     }
+
   }
 }
 
