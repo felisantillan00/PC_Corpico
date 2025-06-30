@@ -73,7 +73,7 @@ function iniciarJuego() {
 
   if (temasDisponibles.length === 0) {
     localStorage.removeItem("temasPuzzleJugados");
-    return iniciarJuego(); // reiniciar lista
+    return iniciarJuego();
   }
 
   temaActual = temasDisponibles[Math.floor(Math.random() * temasDisponibles.length)];

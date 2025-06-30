@@ -7,9 +7,7 @@ function revelarCarta(carta, url, texto) {
         localStorage.setItem('minijuegosJugados', JSON.stringify(jugados));
     }
 
-    // Ya no modificamos ni portada ni texto: asumimos que están predefinidos
-
-    setTimeout(() => location.href = url, 300); // podés ajustar el delay si querés dar tiempo al efecto hover
+    setTimeout(() => location.href = url, 300); 
 }
 
 function mostrarModal(idModal) {
@@ -55,19 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const jugados = JSON.parse(localStorage.getItem('minijuegosJugados') || '[]');
 
-    // Quitar cartas jugadas
     document.querySelectorAll('.carta').forEach(c => {
         if (jugados.includes(c.dataset.id)) c.remove();
     });
 
     const cartas = [...contenedor.children];
 
-    // ⛔️ Si no quedan cartas, mostrar mensaje de felicitaciones y salir
     if (cartas.length === 0) {
         const contenedorPrincipal = document.querySelector('.contenedor');
         const nombre = localStorage.getItem('nombreJugador') || "Jugador";
         const puntaje = localStorage.getItem('puntajeJugador') || 0;
-        iniciarFuegosArtificiales(8000); // Iniciar fuegos artificiales por 10 segundos
+        iniciarFuegosArtificiales(8000); 
         contenedorPrincipal.innerHTML = `
             <p id="puntaje" style="font-size:1.4rem; margin-bottom: 2rem;">🎉 ¡Felicitaciones ${nombre}! 🎉<br><br>Completaste todos los juegos.<br><br>Puntaje final: <strong>${puntaje}</strong></p>
             <div class="btn-contenedor">
@@ -83,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Si quedan juegos, continúa con el carrusel
     let index = 0;
     contenedor.style.transform = 'translateX(0)';
 
@@ -140,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.fill();
             });
 
-            // limpiar las partículas apagadas
             for (let i = particulas.length - 1; i >= 0; i--) {
                 if (particulas[i].alpha <= 0) {
                     particulas.splice(i, 1);
@@ -151,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(animar);
         }
 
-        // Lanzar explosiones en lugares aleatorios
         const intervalo = setInterval(() => {
             const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
             const y = Math.random() * canvas.height * 0.4 + canvas.height * 0.1;

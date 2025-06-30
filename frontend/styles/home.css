@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../resources/fondo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  width: 450px;
+  margin-bottom: 20px;
+  filter: drop-shadow(2px 2px 20px rgb(0, 0, 0, 0.3));
+}
+
+.container {
+  background-color: #ffffff;
+  width: 70rem;
+  height: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 30px rgb(0, 0, 0, 0.3);
+  margin-top: 30px;
+}
+
+.color-prin {
+  background-color: #71D374;
+  border: 0.3rem solid #1B682D;
+}
+
+.btn-jugar {
+  padding: 0.5rem 3rem;
+  margin-top: 2rem;
+  border-radius: 1.5rem;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-jugar:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.07);
+}
+
+.volver {
+  display: block;
+  margin-top: 2.5rem;
+  border: 1px solid rgba(82, 82, 82, 0.226);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 2rem;
+  padding: 10px 20px 0px 20px;
+  transition: all 0.2s ease;
+}
+
+.volver a {
+  text-decoration: none;
+  color: #303030;
+  font-weight: 600;
+  display: flex;
+}
+
+.volver p {
+  margin-bottom: 10px;
+}
+
+.volver svg {
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  color: #0186349f;
+  font-weight: 800;
+  background-color: #00ff623d;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.volver:hover {
+  border: 1px solid #71D374;
+  transform: scale(1.1);
+}
+
+.volver:hover p,
+.volver:hover svg {
+  color: rgba(0, 78, 30, 0.87);
+}
+
+.container-play {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.btn-success {
+  background-color: #0303033f;
+  color: #000;
+  width: 470px;
+  height: 50px;
+  border: 3px solid #00000042;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(27, 104, 45, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-left: 30px;
+}
+
+.btn-success:hover {
+  background-color: #2ca02c;
+  color: #fff;
+  border-color: #4dd964;
+  box-shadow: 0 6px 15px rgba(44, 160, 44, 0.7);
+  transform: scale(1.1);
+}
+
+.footer {
+  background: linear-gradient(to top, #eed338, #f8dc61);
+  color: #1b1b1b;
+  padding: 1rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  border-top: 4px solid #e7bd00;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h4 {
+  color: #1b1b1b;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section li {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-small {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Media queries */
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .logo {
+    width: 80%;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-jugar {
+    width: 100%;
+    font-size: 20px;
+    padding: 0.7rem;
+    margin-top: 3rem;
+  }
+
+  .volver {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-left: 1rem;
+    padding: 10px 15px 0px 15px;
+    border-radius: 1.3rem;
+  }
+
+  .volver a {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-success {
+    width: 90%;
+    font-size: 18px;
+    height: 45px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 90%;
+  }
+
+  .btn-jugar {
+    font-size: 18px;
+    padding: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .container p {
+    text-align: center;
+  }
+
+  .btn-success {
+    width: 100%;
+    font-size: 16px;
+    height: 40px;
+    padding-left: 15px;
+    gap: 8px;
+  }
+
+  .container-play {
+    padding-top: 5px;
+    margin-top: 20px;
+  }
+}
