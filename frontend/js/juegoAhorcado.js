@@ -208,8 +208,8 @@ function fitWord() {
     const el = document.getElementById("word");
     const parentWidth = el.parentElement.clientWidth - 16;
 
-    let fontSize = 50;
-    let letterSpacing = 20;
+    let fontSize = 20;
+    let letterSpacing = 10;
 
     el.style.fontSize = fontSize + 'px';
     el.style.letterSpacing = letterSpacing + 'px';
