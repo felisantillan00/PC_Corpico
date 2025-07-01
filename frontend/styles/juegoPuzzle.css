@@ -200,10 +200,14 @@ body {
         border: none;
     }
 
-    #ImageTitle {
+     #ImageTitle {
         width: 100%;
         max-width: 300px;
         height: auto;
+
+        /* limitar altura máxima para que no crezca mucho */
+        max-height: 30vh; /* ajusta este valor si quieres más o menos */
+        object-fit: contain;
     }
 
     .header-info {
@@ -225,13 +229,16 @@ body {
         margin-top: 0.5rem;
     }
 
-    /* Botón confirmar */
+     /* Botón confirmar para que no crezca demasiado */
     .btn-jugar {
         font-size: 1rem;
         padding: 0.5rem 1rem;
         width: 100%;
         border-radius: 1rem;
         font-weight: bold;
+
+        /* que no se estire más de lo necesario */
+        flex-shrink: 0;
     }
 
     /* Modal adaptado */

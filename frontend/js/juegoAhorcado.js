@@ -50,18 +50,34 @@ function startGame() {
     errores = 0;
 
     palabraContainer.innerHTML = "";
-    for (const letra of palabra) {
+
+    // Defino índice de salto para palabras especiales
+    const palabrasEspeciales = {
+        "RESPONSABILIDAD SOCIAL": 15,
+        "PREOCUPACION POR LOS DEMAS": 12
+    };
+    const saltoIndice = palabrasEspeciales[palabra];
+
+    for (let i = 0; i < palabra.length; i++) {
+        if (saltoIndice && i === saltoIndice) {
+            const br = document.createElement("br");
+            palabraContainer.appendChild(br);
+        }
+        const letra = palabra[i];
         const span = document.createElement("span");
         span.classList.add("letra");
         if (letra === " ") {
-            span.innerHTML = "&nbsp;";  // para que el espacio sea detectado en CSS
-            span.classList.add("espacio"); // clase para CSS
+            span.innerHTML = "&nbsp;";
+            span.classList.add("espacio");
         } else {
             span.textContent = "_";
         }
         palabraContainer.appendChild(span);
     }
+
+    pistaEl.style.whiteSpace = 'pre-line'; // Para respetar saltos de línea en la pista
     pistaEl.textContent = `Pista: ${pista}`;
+
     erroresEl.textContent = errores;
     letrasUsadasEl.textContent = "";
     partes.forEach(part => part.style.display = "none");
@@ -226,3 +242,4 @@ function fitWord() {
 }
 
 startGame();
+
