@@ -24,7 +24,7 @@ body {
 
 .container {
   background-color: #ffffff;
-  width: 70rem;
+  width: 80%;
   height: 35rem;
   display: flex;
   justify-content: center;
@@ -32,7 +32,8 @@ body {
   flex-direction: column;
   border-radius: 1.5rem;
   box-shadow: 0 0 30px rgb(0, 0, 0, 0.3);
-  margin-top: 30px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .color-prin {

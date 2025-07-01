@@ -138,7 +138,7 @@ function empezar() {
 }
 
 function obtenerPreguntasPorDificultad() {
-    const nivel = localStorage.getItem("nivelSeleccionado"); // ej. "facil" o "dificil"
+    const nivel = localStorage.getItem("nivelSeleccionado"); 
     switch (nivel) {
         case "facil":
             return preguntasFacil;
@@ -170,7 +170,7 @@ function showPregunta() {
         button.addEventListener("click", seleccionRespuesta);
     });
 
-    actualizarBarraProgreso(); // 💥 actualiza el avance
+    actualizarBarraProgreso(); 
 }
 
 
@@ -197,14 +197,14 @@ function seleccionRespuesta(e) {
 
     Array.from(respuestaButton.children).forEach(button => {
         if (button !== btnSeleccionado) {
-            button.classList.add("desactivado"); // Clase para el color gris
+            button.classList.add("desactivado");
         } else {
-            button.classList.add("seleccionado"); // Clase para mantener las letras claras
+            button.classList.add("seleccionado"); 
         }
         if (button.dataset.correcta === "true") {
             button.classList.add("correcto");
         }
-        button.disabled = true; // Desactivar todos los botones
+        button.disabled = true; 
     });
 
     siguienteButton.style.visibility = "visible";
@@ -217,7 +217,7 @@ function showPuntos() {
     localStorage.setItem('puntajeJugador', puntaje + puntos);
     setTimeout(() => {
         window.location.href = 'menuJuego.html';
-    }, 3000); // 3 segundos
+    }, 3000); 
 }
 
 function handleSiguientebutton() {

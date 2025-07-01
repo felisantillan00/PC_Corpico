@@ -8,11 +8,9 @@ document.getElementById('btnDificil').addEventListener('click', () => {
     window.location.href = '../menuJuego.html';
 });
 
-// Mostrar nombre almacenado (si hay)
+// Mostrar nombre almacenado dentro del texto principal
 const nombre = localStorage.getItem('nombreJugador');
 if (nombre) {
-    const divNombre = document.createElement('div');
-    divNombre.textContent = `Jugador: ${nombre}`;
-    divNombre.classList.add('nombre-jugador');
-    document.body.appendChild(divNombre);
+    const texto = document.getElementById('textoDificultad');
+    texto.textContent = `${nombre}, elije el nivel de dificultad`;
 }

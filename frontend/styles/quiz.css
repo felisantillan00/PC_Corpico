@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 .ping {
-    width: 60%;
+    width: 70%;
     padding: 0.4rem 1rem;
     border-radius: 1.5rem;
     font-size: 25px;
@@ -16,14 +17,11 @@ input::placeholder {
 .btn-preg {
     font-size: 1.5rem;
     font-weight: bold;
+    font-family: 'Play', sans-serif;
     transition: 0.3s;
     width: 100%;
-    max-width: 500px;
-    /* Fijamos un máximo común */
     padding: 0.8rem 1.2rem;
     margin: 0.5rem;
-    
-    /* Centrado horizontal */
     border-radius: 1.5rem;
     cursor: pointer;
     box-sizing: border-box;
@@ -54,21 +52,10 @@ input::placeholder {
     align-items: center;
 }
 
-.box-niveles {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 1.3rem;
-    text-align: center;
-}
-
 h2 {
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
-
 }
 
 #btn-sig {
@@ -103,18 +90,13 @@ h2 {
 
 .desactivado {
     background-color: #d3d3d3;
-    /* Color gris */
     color: #777;
-    /* Color del texto */
     cursor: not-allowed;
-    /* Indicar que está desactivado */
 }
 
 .seleccionado {
     color: black;
-    /* Mantener el texto claro y visible */
     font-weight: bold;
-    /* Opcional: resaltar el texto */
 }
 
 .progreso-wrapper {
@@ -141,14 +123,14 @@ h2 {
 }
 
 #pregunta {
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
+    width: 80%;
+    margin: 2rem auto;
     font-size: 1.8rem;
     word-wrap: break-word;
     text-align: center;
     hyphens: auto;
     word-break: break-word;
+    font-family: 'Play', sans-serif;
 }
 
 @media (max-width: 767px) {
